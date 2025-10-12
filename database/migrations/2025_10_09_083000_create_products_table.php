@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('stock');
             $table->string('summary');
-            $table->text('decription');
+            $table->text('decription')->nullable();
             $table->string('discount');
             $table->foreignId('vendor_id')->constrained('vendors')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
