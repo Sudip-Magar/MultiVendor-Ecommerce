@@ -14,6 +14,7 @@ class Vendor extends Authenticatable
     protected $fillable = [
         'shop_name',
         'shop_province',
+        'owner_name',
         'shop_city',
         'shop_tole',
         'shop_image',
