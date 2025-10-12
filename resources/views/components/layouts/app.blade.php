@@ -20,11 +20,13 @@
             @include('component.vendor.header')
         </div>
 
-        <div class="w-full">
+        <div class="w-full ">
             <div class=" py-3 shadow-lg" >
                 @include('component.vendor.topbar')
             </div>
-            {{ $slot }}
+            <div class="px-5 py-2 text-sm">
+                {{ $slot }}
+            </div>
         </div>
     </div>
 

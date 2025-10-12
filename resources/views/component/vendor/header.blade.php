@@ -15,33 +15,33 @@
         <nav class="mt-10">
             <ul class="space-y-4 text-sm ">
                 <li>
-                    <a class="hover:bg-white hover:text-black py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/dashboard') ? 'bg-white text-black' : 'text-white hover:bg-white hover:text-black transition ' }}" wire:navigate
+                    <a class=" py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/dashboard') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}" wire:navigate
                         href="{{route('vendor.dashboard')}}">
                         <span :class="open ? 'block' : 'hidden duration-0'"><i class="fas fa-tachometer-alt"></i>
                             Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a class="hover:bg-white hover:text-black py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/product') ? 'bg-white text-black' : 'text-white hover:bg-white hover:text-black transition ' }}" wire:navigate
+                    <a class=" py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/product') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}" wire:navigate
                         href="">
                         <span :class="open ? 'block' : 'hidden duration-0'"><i class="fas fa-box"></i> Products</span>
                     </a>
                 </li>
                 <li>
-                    <a class="hover:bg-white hover:text-black py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/category') ? 'bg-white text-black' : 'text-white hover:bg-white hover:text-black transition ' }}" wire:navigate
+                    <a class=" py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/category') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}" wire:navigate
                         href="{{route('vendor.category')}}">
                         <span :class="open ? 'block' : 'hidden duration-0'"><i class="fas fa-tags"></i> Category</span>
                     </a>
                 </li>
                 <li>
-                    <a class="hover:bg-white hover:text-black py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/order') ? 'bg-white text-black' : 'text-white hover:bg-white hover:text-black transition ' }}" wire:navigate
+                    <a class="py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/order') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}" wire:navigate
                         href="">
                         <span :class="open ? 'block' : 'hidden duration-0'"><i class="fas fa-shopping-cart"></i>
                             Orders</span>
                     </a>
                 </li>
                 <li>
-                    <a class="hover:bg-white hover:text-black py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/setting') ? 'bg-white text-black' : 'text-white hover:bg-white hover:text-black transition ' }}" wire:navigate
+                    <a class="py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/setting') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}" wire:navigate
                         href="">
                         <span :class="open ? 'block' : 'hidden duration-0'"><i class="fas fa-cog"></i> Setting</span>
                     </a>
