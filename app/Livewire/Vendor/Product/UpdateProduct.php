@@ -5,6 +5,7 @@ namespace App\Livewire\Vendor\Product;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -72,17 +73,25 @@ class UpdateProduct extends Component
                 'price' => $this->price,
                 'vendor_id' => Auth('vendor')->user()->id,
             ]);
+            // Re-sync product images based on current state
             Image::where('product_id', $this->productId)->delete();
+
+            // Keep existing DB images that were not removed in the UI
+            if (!empty($this->realImg)) {
+                foreach ($this->realImg as $image) {
+                    $existingUrl = is_array($image) ? ($image['url'] ?? null) : (string) $image;
+                    if ($existingUrl) {
+                        Image::create([
+                            'product_id' => $product->id,
+                            'url' => $existingUrl,
+                        ]);
+                    }
+                }
+            }
+
+            // Add any newly uploaded images
             if (!empty($this->images)) {
                 foreach ($this->images as $image) {
-                    $imagePath = $image->store('products', 'public');
-                    Image::create([
-                        'product_id' => $product->id,
-                        'url' => $imagePath,
-                    ]);
-                }
-            } else {
-                foreach ($this->realImg as $image) {
                     $imagePath = $image->store('products', 'public');
                     Image::create([
                         'product_id' => $product->id,
