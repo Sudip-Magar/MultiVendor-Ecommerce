@@ -17,23 +17,33 @@ class Product extends Model
         'category_id',
     ];
 
-    public function categroy(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function images(){
+    public function images()
+    {
         return $this->hasMany(Image::class);
     }
 
-    public function vendor(){
+    public function firstImage()
+    {
+        return $this->images()->first();
+    }
+
+    public function vendor()
+    {
         return $this->belongsTo(Vendor::class);
     }
 
-    public function cartItem(){
+    public function cartItem()
+    {
         return $this->hasOne(Cart_items::class);
     }
 
-    public function orderItem(){
+    public function orderItem()
+    {
         return $this->hasOne(Order_item::class);
     }
 }

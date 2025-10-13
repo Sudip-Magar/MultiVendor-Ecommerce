@@ -23,7 +23,7 @@
                 </li>
                 <li>
                     <a class=" py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/product') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}" wire:navigate
-                        href="">
+                        href=" {{route('vendor.product')}}">
                         <span :class="open ? 'block' : 'hidden duration-0'"><i class="fas fa-box"></i> Products</span>
                     </a>
                 </li>

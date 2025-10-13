@@ -1,4 +1,4 @@
-<div class="flex justify-between px-5 items-center" >
+<div class="flex justify-between px-5 items-center " >
     <div class="text-xl cursor-pointer" @click.prevent="toggle">
         <i class="fa-solid fa-bars-staggered"></i>
     </div>
