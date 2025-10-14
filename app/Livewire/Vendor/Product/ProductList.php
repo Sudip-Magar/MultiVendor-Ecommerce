@@ -11,9 +11,13 @@ class ProductList extends Component
 {
     public function productDetail($id)
     {
-                $this->dispatch('getProductId', productId: $id)->to('vendor.product.update-product');
+        $this->dispatch('getProductId', productId: $id)->to('vendor.product.update-product');
+    }
 
-
+    public function deleteProduct($id){
+        $product = Product::find($id);
+        dd($product);
+       
     }
     public function render()
     {

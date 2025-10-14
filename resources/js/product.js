@@ -3,6 +3,7 @@ document.addEventListener('alpine:init',() =>{
         listView: true,
         createView:false,
         updateView:false,
+        popup:false,
 
         showCreateView(){
             this.listView =false;
