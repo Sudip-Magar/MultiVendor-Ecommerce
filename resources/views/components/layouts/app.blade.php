@@ -20,6 +20,7 @@
         <div class="flex-1 overflow-auto">
             <div class="py-3 shadow-lg sticky">
                 @include('component.vendor.topbar')
+                
             </div>
             <div class="px-5 py-2 text-sm">
                 {{ $slot }}
