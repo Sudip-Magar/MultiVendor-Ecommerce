@@ -40,6 +40,7 @@ class Register extends Component
             }
 
             $validation['password'] = Hash::make($validation['password']);
+            $validation['shop_name'] = ucwords(strtolower($validation['shop_name']));
             Vendor::create($validation);
             session()->flash('success', 'Vendor Registration Successfull');
             $this->reset();

@@ -2,16 +2,22 @@
 
 use App\Http\Controllers\AuthController;
 use App\Livewire\Auth\Login;
+use App\Livewire\Auth\User\Login as UserLogin;
+use App\Livewire\Auth\User\Register as UserRegister;
 use App\Livewire\Auth\Register;
+use App\Livewire\User\Home;
 use App\Livewire\Vendor\Category;
 use App\Livewire\Vendor\Dashboard;
-use App\Http\Controllers\ProductController;
 use App\Livewire\Vendor\Product\Product;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/', Home::class)->name('home');
 
-
+Route::middleware('guest')->group(function () {
+    Route::get('/login', UserLogin::class)->name('user.login');
+    Route::get('/register', UserRegister::class)->name('user.register');
+});
 
 Route::prefix('vendor')->name('vendor.')->group(function () {
 
@@ -21,7 +27,7 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
     });
 
     Route::middleware('vendor')->group(function () {
-        Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/dashboard', Dashboard::class)->name('dashboard');
         Route::get('category', Category::class)->name('category');
         Route::get('/product', Product::class)->name('product');
