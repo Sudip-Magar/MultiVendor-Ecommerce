@@ -59,6 +59,9 @@ class ProductDetail extends Component
                     'price' => $price,
                     'sub_total' => $price * $this->quantity,
                 ]);
+
+                DB::commit();
+                return redirect()->route('product.detail', ['id' => $this->productId])->with('success', 'Quantity update Successfully');
             } else {
                 Cart_items::create([
                     'cart_id' => $cart->id,
@@ -67,12 +70,11 @@ class ProductDetail extends Component
                     'price' => $price,
                     'sub_total' => $price * $this->quantity,
                 ]);
+
+                DB::commit();
+                return redirect()->route('product.detail', ['id' => $this->productId])->with('success', 'Product added to cart');
             }
 
-            DB::commit();
-
-            session()->flash('success', 'Product added to cart successfully!');
-            return redirect()->route('user.cart');
 
         } catch (\Exception $e) {
             DB::rollBack();
