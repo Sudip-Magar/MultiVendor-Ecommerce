@@ -17,12 +17,12 @@
 
 <body>
     @include('common.message')
-    <div>
+    <div class="z-100">
         @include('component.user.header')
-    </div>
+    </div class="z-0">
     {{ $slot }}
 
-    <div>
+    <div class="z-10">
         @include('component.user.footer')
     </div>
 
