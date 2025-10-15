@@ -22,8 +22,9 @@
             @enderror
         </div>
         {{-- Summary --}}
-        <div> <label for="summary" class="block text-sm font-medium text-gray-700 mb-1">Summary</label> <input
-                type="text" id="summary"
+        <div>
+            <label for="summary" class="block text-sm font-medium text-gray-700 mb-1">Summary</label>
+            <input type="text" id="summary"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                 wire:model="summary" placeholder="Enter product summary">
             @error('summary')
@@ -32,8 +33,8 @@
         </div>
         <!-- Price and Quantity (side by side) -->
         <div class="flex gap-4">
-            <div class="flex-1"> <label for="price"
-                    class="block text-sm font-medium text-gray-700 mb-1">Price</label>
+            <div class="flex-1">
+                <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Price</label>
                 <input type="number" id="price" wire:model="price" step="0.01"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                     placeholder="Enter price">
@@ -41,9 +42,9 @@
                     <small class="text-red-500">{{ $message }}</small>
                 @enderror
             </div>
-            <div class="flex-1"> <label for="discount"
-                    class="block text-sm font-medium text-gray-700 mb-1">Discount</label> <input type="number"
-                    id="discount" wire:model="discount"
+            <div class="flex-1">
+                <label for="discount" class="block text-sm font-medium text-gray-700 mb-1">Discount</label>
+                <input type="number" id="discount" wire:model="discount"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                     placeholder="Enter Discount">
                 @error('discount')
@@ -51,8 +52,8 @@
                 @enderror
             </div>
             <div class="flex-1"> <label for="quantity"
-                    class="block text-sm font-medium text-gray-700 mb-1">Quantity</label> <input type="number"
-                    id="quantity" wire:model="stock"
+                    class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                <input type="number" id="quantity" wire:model="stock"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                     placeholder="Enter quantity">
                 @error('stock')
@@ -93,8 +94,11 @@
             @endif
         </div>
         <!-- Submit Button -->
-        <div class="flex justify-end"> <button
+        <div class="flex justify-end">
+            <button
                 class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-200 cursor-pointer">
-                Save Product </button> </div>
+                Save Product
+            </button>
+        </div>
     </form>
 </section>

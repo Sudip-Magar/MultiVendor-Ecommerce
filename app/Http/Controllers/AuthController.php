@@ -10,4 +10,9 @@ class AuthController extends Controller
         Auth::guard('vendor')->logout();
         return redirect()->route('vendor.login')->with('success','Logged out successfully');
     }
+
+    public function userlogout(){
+        Auth::guard('web')->logout();
+        return redirect()->route('home')->with('success','Logged out successfully');
+    }
 }

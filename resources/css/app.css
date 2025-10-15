@@ -17,3 +17,6 @@ body {
 .user-header{
      font-family: "Pacifico", cursive;
 }
+x-cloak{
+    display: hidden;
+}

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'name',
         'price',
@@ -13,6 +15,7 @@ class Product extends Model
         'summary',
         'description',
         'discount',
+        'discount_amount',
         'vendor_id',
         'category_id',
     ];
@@ -29,7 +32,7 @@ class Product extends Model
 
     public function firstImage()
     {
-        return $this->images()->first();
+        return $this->hasOne(Image::class)->orderBy('id');
     }
 
     public function vendor()
