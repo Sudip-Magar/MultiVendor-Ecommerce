@@ -8,7 +8,8 @@
             <!-- Thumbnail Images -->
             <div class="flex space-x-2">
                 @foreach ($product->images as $img)
-                    <img src="{{ asset('storage/' . $img->url) }}" class="w-20 h-20 object-cover rounded cursor-pointer"
+                    <img src="{{ asset('storage/' . $img->url) }}"
+                        class="w-20 h-20 object-cover rounded cursor-pointer hover:opacity-80 duration-150"
                         @click.prevent="mainImage='{{ asset('storage/' . $img->url) }}'">
                 @endforeach
             </div>
@@ -19,22 +20,40 @@
             <h2 class="text-3xl font-bold">{{ $product->name }}</h2>
             <p class="text-gray-600">{{ $product->description }}</p>
 
+            <!-- Price -->
             <p class="text-lg font-semibold">
-                Price: <span class="line-through text-gray-400">{{ $product->price }}</span>
+                Price:
                 @if ($product->discount)
-                    <span class="text-red-600">
-                        {{ $product->price - ($product->price * $product->discount) / 100 }}
+                    <span class="line-through text-gray-400">Rs. {{ $product->price }}</span>
+                    <span class="text-red-600 ml-2">
+                        Rs. {{ $product->price - ($product->price * $product->discount) / 100 }}
                     </span>
+                @else
+                    <span class="text-gray-800">Rs. {{ $product->price }}</span>
                 @endif
             </p>
-            <p>Stock: {{ $product->stock }}</p>
+
+            <!-- Stock Info -->
+            <p class="text-sm text-gray-500">Available Stock:
+                <span class="font-medium text-gray-800">{{ $product->stock }}</span>
+            </p>
+
+            <!-- Quantity Input -->
+            <div class="flex items-center space-x-3">
+                <label for="quantity" class="text-gray-700 font-medium">Quantity:</label>
+                <input type="number" id="quantity" min="1" max="{{ $product->stock }}" wire:model='quantity'
+                    class="w-20 border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-center">
+                    @error('quantity')
+                     <small class="text-red-500">{{ $message }}</small>
+                    @enderror
+            </div>
 
             <!-- Action Buttons -->
             <div class="flex space-x-3">
-                <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 duration-150">
+                <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900 duration-150 cursor-pointer" wire:click.prevent = 'addToCart'>
                     Add to Cart
                 </button>
-                <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 duration-150">
+                <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 duration-150 cursor-pointer">
                     Wishlist
                 </button>
             </div>
@@ -42,14 +61,11 @@
             <!-- Additional Info -->
             <div class="mt-5">
                 <h3 class="font-semibold">Product Details:</h3>
-                <ul class="list-disc list-inside text-gray-700">
-                    <li>Feature 1: Example detail</li>
-                    <li>Feature 2: Example detail</li>
-                    <li>Feature 3: Example detail</li>
-                </ul>
+                <p>{{ $product->description }}</p>
             </div>
         </div>
     </div>
+
 
     <div>
         @livewire('user.product', ['limit' => 5])

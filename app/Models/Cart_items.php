@@ -10,7 +10,8 @@ class Cart_items extends Model
         'cart_id',
         'product_id',
         'quantity',
-        'price'
+        'price',
+        'sub_total',
     ];
 
     public function cart(){
