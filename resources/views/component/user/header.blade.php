@@ -56,22 +56,22 @@
                         <button @click.prevent="popup = !popup"
                             class="hover:text-gray-400 cursor-pointer">{{ Auth::guard('web')->user()->name }}</button>
 
-                        <div x-show="popup" @click.outside="popup = false">
+                        <div x-show="popup" @click.outside="popup = false" x-transition x-cloak>
                             <span
                                 class="w-8 h-8 rotate-45 bg-gray-800 absolute bottom-[-54px] left-10 shadow-lg"></span>
                             <div
                                 class="absolute bottom-[-130px] left-[-19px] bg-gray-800 px-3 py-4 space-y-4 w-[150px] rounded-lg">
-                                <span class="space-x-1.5 block">
+                                <span class="space-x-1.5 block hover:text-gray-400">
                                     <i class="fa-solid fa-gear"></i>
                                     <a href="">Setting</a>
                                 </span>
 
-                                <form action="">
+                                <form action="{{route('user.logout')}}" method="POST">
                                     @csrf
-                                    <div class="space-x-1.5">
+                                    <button class="space-x-1.5 hover:text-gray-400 block cursor-pointer">
                                         <i class="fa-solid fa-right-from-bracket"></i>
                                         <span>Logout</span>
-                                    </div>
+                                    </button>
                                 </form>
                             </div>
                         </div>

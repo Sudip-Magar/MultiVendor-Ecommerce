@@ -1,3 +1,6 @@
-<div class="h-screen">
-    helloss
+<div class="">
+    @include('component.user.carousel')
+    @livewire('user.product',)
 </div>
+
+

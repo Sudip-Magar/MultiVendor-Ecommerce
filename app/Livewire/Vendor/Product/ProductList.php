@@ -9,15 +9,20 @@ use Livewire\Livewire;
 
 class ProductList extends Component
 {
+    public $productIds;
     public function productDetail($id)
     {
         $this->dispatch('getProductId', productId: $id)->to('vendor.product.update-product');
     }
 
-    public function deleteProduct($id){
-        $product = Product::find($id);
-        dd($product);
-       
+    public function popupFunc($id)
+    {
+        $this->productIds = $id;
+    }
+
+    public function deleteProduct(){
+        $product = Product::find( $this->productIds)->delete();
+        return redirect()->route('vendor.product')->with('success','Product Delete Successfully');
     }
     public function render()
     {

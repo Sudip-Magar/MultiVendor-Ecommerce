@@ -19,6 +19,10 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', UserRegister::class)->name('user.register');
 });
 
+Route::middleware('web')->group(function (){
+    Route::post('/logout',[AuthController::class, 'userlogout'])->name('user.logout');
+});
+
 Route::prefix('vendor')->name('vendor.')->group(function () {
 
     Route::middleware('guest')->group(function () {

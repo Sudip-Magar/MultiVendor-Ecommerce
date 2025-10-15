@@ -1,5 +1,5 @@
-<section >
-    <table  class="w-full text-sm text-left border border-gray-200 rounded-lg overflow-hidden">
+<section>
+    <table class="w-full text-sm text-left border border-gray-200 rounded-lg overflow-hidden">
         <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
             <tr>
                 <th class="px-4 py-2 border-b">#</th>
@@ -14,18 +14,22 @@
         <tbody class="divide-y divide-gray-200">
             @foreach ($products as $key => $product)
                 <tr class="hover:bg-gray-50">
-                {{-- {{ $products }} --}}
-                <td class="px-4 py-2">{{ $key + 1 }}</td>
-                <td class="px-4 py-2">{{$product->name}}</td>
-                <td class="px-4 py-2">{{$product->stock}}</td>
-                <td class="px-4 py-2">{{$product->discount}}%</td>
-                <td class="px-4 py-2">{{$product->category->name}}</td>
-                <td class="px-4 py-2">{{$product->summary}}</td>
-                <td class="px-4 py-2 text-center space-x-3">
-                    <button  class="text-blue-500 hover:underline text-sm cursor-pointer" wire:click="productDetail({{$product->id}})" @click.prevent="showUpdateView">Edit</button>
-                    <button class="text-red-500 hover:underline text-sm cursor-pointer"  @click.prevent="popup = true">Delete</button>
-                </td>
-            </tr>
+                    {{-- {{ $products }} --}}
+                    <td class="px-4 py-2">{{ $key + 1 }}</td>
+                    <td class="px-4 py-2">{{ $product->name }}</td>
+                    <td class="px-4 py-2">{{ $product->stock }}</td>
+                    <td class="px-4 py-2">{{ $product->discount }}%</td>
+                    <td class="px-4 py-2">{{ $product->category->name }}</td>
+                    <td class="px-4 py-2">{{ $product->summary }}</td>
+                    <td class="px-4 py-2 text-center space-x-3">
+                        <button class="text-blue-500 hover:underline text-sm cursor-pointer"
+                            wire:click="productDetail({{ $product->id }})"
+                            @click.prevent="showUpdateView">Edit</button>
+                        <button class="text-red-500 hover:underline text-sm cursor-pointer"
+                            @click.prevent="popup = true"
+                            wire:click.prevent='popupFunc({{ $product->id }})'>Delete</button>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
@@ -45,8 +49,10 @@
                 Are you Sure you want to delete this product?
             </h2>
             <p class="text-red-700">Can Process can't be undone</p>
-            <button>Cancel</button>
-            <button wire:click='deleteProduct({{ $product->id }})'>Delete</button>
+            <div class="flex gap-2 justify-end mt-4">
+                <button @click.prevent="popup = false" class="bg-green-800 hover:bg-green-900 py-1 px-3 rounded-md cursor-pointer text-white block">Cancel</button>
+                <button class="bg-red-800 hover:bg-red-900 py-1 px-3 rounded-md cursor-pointer text-white block" wire:click.prevent='deleteProduct'>Delete</button>
+            </div>
         </div>
     </div>
 </section>
