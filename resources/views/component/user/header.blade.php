@@ -27,7 +27,8 @@
                 </a>
             </li>
             <li class="py-3 lg:py-0">
-                <a href="{{route('user.product')}}" class="hover:border-b-3 {{ request()->is('product') ? 'border-b-3' : '' }}"
+                <a href="{{ route('user.product') }}"
+                    class="hover:border-b-3 {{ request()->is('product') ? 'border-b-3' : '' }}"
                     wire:navigate>Product</a>
             </li>
             <li class="py-3 lg:py-0">
@@ -47,7 +48,11 @@
         <!-- Right Icons -->
         <div class="flex space-x-6 items-center">
             <div class="cursor-pointer hover:text-gray-400">
-                <i class="fa-solid fa-cart-shopping"></i>
+                <a class="relative" href="{{ route('user.cart') }}">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <small
+                        class="absolute top-[-10px] -right-4 bg-red-800 text-white px-[5px] py-0 rounded-full">{{ $cartCount }}</small>
+                </a>
             </div>
 
             <div class="hidden lg:block cursor-pointer ">
@@ -56,17 +61,17 @@
                         <button @click.prevent="popup = !popup"
                             class="hover:text-gray-400 cursor-pointer">{{ Auth::guard('web')->user()->name }}</button>
 
-                        <div x-show="popup" @click.outside="popup = false" x-transition x-cloak>
+                        <div class="z-100" x-show="popup" @click.outside="popup = false" x-transition x-cloak>
                             <span
                                 class="w-8 h-8 rotate-45 bg-gray-800 absolute bottom-[-54px] left-10 shadow-lg"></span>
                             <div
-                                class="absolute bottom-[-130px] left-[-19px] bg-gray-800 px-3 py-4 space-y-4 w-[150px] rounded-lg">
+                                class="absolute bottom-[-130px] left-[-19px] bg-gray-800 px-3 py-4 space-y-4 w-[150px] rounded-lg z-100">
                                 <span class="space-x-1.5 block hover:text-gray-400">
                                     <i class="fa-solid fa-gear"></i>
                                     <a href="">Setting</a>
                                 </span>
 
-                                <form action="{{route('user.logout')}}" method="POST">
+                                <form action="{{ route('user.logout') }}" method="POST">
                                     @csrf
                                     <button class="space-x-1.5 hover:text-gray-400 block cursor-pointer">
                                         <i class="fa-solid fa-right-from-bracket"></i>

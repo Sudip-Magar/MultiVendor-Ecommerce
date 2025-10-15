@@ -1,4 +1,4 @@
-<div class="horizontal-slider w-[95%] mx-auto my-5">
+<div class="horizontal-slider w-[95%] mx-auto my-5 z-1">
     <div class="p-2">
         <img src="{{ asset('storage/banner/a.avif') }}" class="w-full  object-cover rounded-lg">
     </div>

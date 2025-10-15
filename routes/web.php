@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\User\Login as UserLogin;
 use App\Livewire\Auth\User\Register as UserRegister;
+use App\Livewire\User\Cart;
 use App\Livewire\User\Product as modalProduct;
 use App\Livewire\Auth\Register;
 use App\Livewire\User\Home;
@@ -25,6 +26,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('web')->group(function (){
     Route::post('/logout',[AuthController::class, 'userlogout'])->name('user.logout');
+    Route::get('/cart',Cart::class)->name('user.cart');
 });
 
 Route::prefix('vendor')->name('vendor.')->group(function () {
