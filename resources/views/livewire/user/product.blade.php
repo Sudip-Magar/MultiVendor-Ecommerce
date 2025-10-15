@@ -47,10 +47,10 @@
 
                     {{-- Action Buttons --}}
                     <div class="flex justify-center space-x-3 mt-3">
-                        <button
+                        <a href="{{ route('product.detail',['id' => $product->id]) }}"
                             class="bg-blue-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-blue-700 transition">
                             <i class="fa-solid fa-eye"></i>
-                        </button>
+                        </a>
                         <button
                             class="bg-green-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-green-700 transition">
                             <i class="fa-solid fa-cart-plus"></i>

@@ -18,7 +18,11 @@
                     <td class="px-4 py-2">{{ $key + 1 }}</td>
                     <td class="px-4 py-2">{{ $product->name }}</td>
                     <td class="px-4 py-2">{{ $product->stock }}</td>
-                    <td class="px-4 py-2">{{ $product->discount }}%</td>
+                    @if ($product->discount || $product->discount > 0)
+                        <td class="px-4 py-2">{{ $product->discount }}%</td>
+                    @else
+                        <td class="px-4 py-2">0%</td>
+                    @endif
                     <td class="px-4 py-2">{{ $product->category->name }}</td>
                     <td class="px-4 py-2">{{ $product->summary }}</td>
                     <td class="px-4 py-2 text-center space-x-3">

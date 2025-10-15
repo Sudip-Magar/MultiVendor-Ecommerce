@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li class="py-3 lg:py-0">
-                <a href="#" class="hover:border-b-3 {{ request()->is('product') ? 'border-b-3' : '' }}"
+                <a href="{{route('user.product')}}" class="hover:border-b-3 {{ request()->is('product') ? 'border-b-3' : '' }}"
                     wire:navigate>Product</a>
             </li>
             <li class="py-3 lg:py-0">
