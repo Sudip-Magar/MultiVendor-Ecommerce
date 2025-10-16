@@ -6,7 +6,7 @@
             <img :src="mainImage" class="w-full h-96 object-cover rounded-lg mb-3" alt="Product">
 
             <!-- Thumbnail Images -->
-            <div class="flex space-x-2">
+            <div class="flex space-x-2 flex-wrap space-y-2">
                 @foreach ($product->images as $img)
                     <img src="{{ asset('storage/' . $img->url) }}"
                         class="w-20 h-20 object-cover rounded cursor-pointer hover:opacity-80 duration-150"

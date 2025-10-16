@@ -53,7 +53,7 @@
                         </a>
                         <button
                             class="bg-green-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-green-700 transition">
-                            <i class="fa-solid fa-cart-plus"></i>
+                            <i class="fa-solid fa-cart-plus" wire:click.prevent='AddToCart({{ $product->id }})'></i>
                         </button>
                     </div>
                 </div>
