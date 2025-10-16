@@ -16,7 +16,11 @@
 
             <!-- User -->
             <div class="cursor-pointer w-full text-center my-5 lg:hidden">
-                User
+                @if (Auth::guard('web')->check())
+                    {{ Auth::guard('web')->user()->name }}
+                @else
+                    Guest
+                @endif
             </div>
 
             <!-- Menu Links -->
@@ -43,6 +47,22 @@
                 <a href="#" class="hover:border-b-3 {{ request()->is('contact') ? 'border-b-3' : '' }}"
                     wire:navigate>Contact Us</a>
             </li>
+
+            @if (Auth::guard('web')->check())
+                <li class="py-3 lg:hidden">
+                    <form action="{{ route('user.logout') }}" method="POST">
+                        @csrf
+                        <button class="space-x-1.5 hover:text-gray-400 block cursor-pointer">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </li>
+            @else
+                <li class="py-3 lg:hidden">
+                    <a href="{{ route('user.login') }}" wire:navigate>Login</a>
+                </li>
+            @endif
         </ul>
 
         <!-- Right Icons -->
@@ -54,6 +74,8 @@
                         class="absolute top-[-10px] -right-4 bg-red-800 text-white px-[5px] py-0 rounded-full">{{ $cartCount }}</small>
                 </a>
             </div>
+
+
 
             <div class="hidden lg:block cursor-pointer ">
                 @if (Auth::guard('web')->user())
