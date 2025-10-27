@@ -2,6 +2,9 @@
 
 namespace App\Livewire\User;
 
+use App\Models\Order;
+use App\Models\Order_item;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -13,15 +16,23 @@ use App\Models\Product;
 #[Layout('components.layouts.user')]
 class Cart extends Component
 {
-    public $userId;
+    public $userId, $userName, $userEmail, $userProvince, $userCity, $userTole, $userPhone;
     public $cartItems = [];
     public $subTotal = 0;
     public $cartItem;
+    public $paymentMethod;
 
     public function mount()
     {
         if (Auth::guard('web')->check()) {
-            $this->userId = Auth::guard('web')->user()->id;
+            $user = Auth::guard('web')->user();
+            $this->userId = $user->id;
+            $this->userName = $user->name;
+            $this->userEmail = $user->email;
+            $this->userProvince = $user->province;
+            $this->userCity = $user->city;
+            $this->userTole = $user->tole;
+            $this->userPhone = $user->phone;
 
             $carts = ModalCart::where('user_id', $this->userId)
                 ->with('cartItems.product')
@@ -38,13 +49,15 @@ class Cart extends Component
         }
     }
 
-    public function removePopup($id){
+    public function removePopup($id)
+    {
         $this->cartItem = Cart_items::with('product')->find($id);
     }
 
-    public function deleteItem(){
+    public function deleteItem()
+    {
         $this->cartItem->delete();
-        return redirect()->route('user.cart')->with('error','Product successfully removed from card');
+        return redirect()->route('user.cart')->with('error', 'Product successfully removed from card');
     }
 
 
@@ -166,6 +179,50 @@ class Cart extends Component
 
         $this->subTotal = $carts->flatMap->cartItems->sum('sub_total');
 
+    }
+
+    public function checkoutSubmit()
+    {
+        $cart = ModalCart::where('user_id', $this->userId)->first();
+        $cart_items = Cart_items::where('cart_id', $cart->id)->get();
+        
+            $order = Order::create([
+                'user_id' => $this->userId,
+                'order_number' => 'ORD-' . strtoupper(uniqid()),
+                'name' => $this->userName,
+                'email' => $this->userEmail,
+                'province' => $this->userProvince,
+                'city' => $this->userCity,
+                'tole' => $this->userTole,
+                'phone' => $this->userPhone,
+                'price' => $this->subTotal,
+                'payment_status' => 'Pending',
+                'order_status' => 'Pending',
+                'payment_method' => $this->paymentMethod,
+
+            ]);
+
+            foreach ($cart_items as $item) {
+                Order_item::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->product_id,
+                    'quantity' => $item->quantity,
+                    'price' => $item->price,
+                    'total' => $item->price * $item->quantity,
+                ]);
+
+                $product = Product::find($item->product_id);
+                if($product){
+                    $product->stock = $product->stock - $item->quantity;
+                    $product->save();
+                }
+            }
+
+            $cart_items->each->delete();
+            $cart->delete();
+            DB::commit();
+            return redirect()->route('user.cart')->with('success', 'Order Successfull Placed');
+        
     }
 
 
