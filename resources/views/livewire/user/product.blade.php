@@ -32,7 +32,11 @@
                 <div class="p-3 text-center space-y-1">
                     <h3 class="font-semibold text-gray-800 truncate">{{ $product->name }}</h3>
 
-                    <p class="text-sm text-gray-500">Stock: {{ $product->stock }}</p>
+                    @if ($product->stock > 0)
+                        <p class="text-sm text-gray-500">Stock: {{ $product->stock }}</p>
+                    @else
+                        <p class="text-sm text-red-500">Out of Stock</p>
+                    @endif
 
                     @if ($product->discount)
                         <p class="text-gray-500 line-through text-sm">
@@ -48,11 +52,11 @@
                     {{-- Action Buttons --}}
                     <div class="flex justify-center space-x-3 mt-3">
                         <a href="{{ route('product.detail',['id' => $product->id]) }}"
-                            class="bg-blue-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-blue-700 transition">
+                            class="bg-blue-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-blue-700 transition cursor-pointer">
                             <i class="fa-solid fa-eye"></i>
                         </a>
                         <button
-                            class="bg-green-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-green-700 transition">
+                            class="bg-green-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-green-700 transition cursor-pointer">
                             <i class="fa-solid fa-cart-plus" wire:click.prevent='AddToCart({{ $product->id }})'></i>
                         </button>
                     </div>

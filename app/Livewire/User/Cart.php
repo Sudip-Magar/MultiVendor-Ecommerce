@@ -210,6 +210,12 @@ class Cart extends Component
                     'price' => $item->price,
                     'total' => $item->price * $item->quantity,
                 ]);
+
+                $product = Product::find($item->product_id);
+                if($product){
+                    $product->stock = $product->stock - $item->quantity;
+                    $product->save();
+                }
             }
 
             $cart_items->each->delete();
