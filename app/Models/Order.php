@@ -30,4 +30,9 @@ class Order extends Model
     {
         return $this->hasMany(Order_item::class);
     }
+
+    public function vendorOrders()
+    {
+        return $this->hasMany(VendorOrder::class);
+    }
 }

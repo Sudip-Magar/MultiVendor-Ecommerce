@@ -16,9 +16,10 @@
         </div>
 
         <!-- Right: Product Info -->
-        <div class="space-y-4">
+        <div class="space-y-3">
             <h2 class="text-3xl font-bold">{{ $product->name }}</h2>
-            <p class="text-gray-600">{{ $product->description }}</p>
+            <p class="text-green-500">{{ $product->vendor->shop_name }}</p>
+            <p class="text-gray-600">{{ $product->summary }}</p>
 
             <!-- Price -->
             <p class="text-lg font-semibold">

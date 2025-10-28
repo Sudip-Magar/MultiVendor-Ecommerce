@@ -4,6 +4,7 @@ namespace App\Livewire\User;
 
 use App\Models\Order;
 use App\Models\Order_item;
+use App\Models\VendorOrder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
@@ -183,9 +184,20 @@ class Cart extends Component
 
     public function checkoutSubmit()
     {
-        $cart = ModalCart::where('user_id', $this->userId)->first();
-        $cart_items = Cart_items::where('cart_id', $cart->id)->get();
-        
+        $this->validate([
+            'paymentMethod'=>"required",
+        ]);
+        DB::beginTransaction();
+
+        try {
+            $cart = ModalCart::where('user_id', $this->userId)->first();
+            $cart_items = Cart_items::where('cart_id', $cart->id)->get();
+
+            if ($cart_items->isEmpty()) {
+                return redirect()->back()->with('error', 'Your cart is empty!');
+            }
+
+            // ✅ 1. Create Main Order
             $order = Order::create([
                 'user_id' => $this->userId,
                 'order_number' => 'ORD-' . strtoupper(uniqid()),
@@ -199,31 +211,57 @@ class Cart extends Component
                 'payment_status' => 'Pending',
                 'order_status' => 'Pending',
                 'payment_method' => $this->paymentMethod,
-
             ]);
 
-            foreach ($cart_items as $item) {
-                Order_item::create([
+            // ✅ 2. Group items by vendor
+            $groupedByVendor = $cart_items->groupBy(function ($item) {
+                return $item->product->vendor_id; // assuming relation or you can query
+            });
+
+            // ✅ 3. Create vendor orders and order items
+            foreach ($groupedByVendor as $vendorId => $items) {
+                $subtotal = $items->sum(fn($i) => $i->price * $i->quantity);
+
+                $vendorOrder = VendorOrder::create([
                     'order_id' => $order->id,
-                    'product_id' => $item->product_id,
-                    'quantity' => $item->quantity,
-                    'price' => $item->price,
-                    'total' => $item->price * $item->quantity,
+                    'vendor_id' => $vendorId,
+                    'subtotal' => $subtotal,
+                    'status' => 'Pending',
                 ]);
 
-                $product = Product::find($item->product_id);
-                if($product){
-                    $product->stock = $product->stock - $item->quantity;
-                    $product->save();
+                foreach ($items as $item) {
+                    Order_item::create([
+                        'order_id' => $order->id,
+                        'vendor_order_id' => $vendorOrder->id, // 🔥 link vendor order
+                        'product_id' => $item->product_id,
+                        'quantity' => $item->quantity,
+                        'price' => $item->price,
+                        'total' => $item->price * $item->quantity,
+                    ]);
+
+                    // Reduce stock
+                    $product = Product::find($item->product_id);
+                    if ($product) {
+                        $product->stock -= $item->quantity;
+                        $product->save();
+                    }
                 }
             }
 
+            // ✅ 4. Clear cart
             $cart_items->each->delete();
             $cart->delete();
+
             DB::commit();
-            return redirect()->route('user.cart')->with('success', 'Order Successfull Placed');
-        
+
+            return redirect()->route('user.cart')->with('success', 'Order Successfully Placed');
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('user.cart')->with('error', 'Something went wrong: ' . $th->getMessage());
+        }
     }
+
 
 
     public function render()

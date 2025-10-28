@@ -6,6 +6,7 @@ use App\Livewire\Auth\User\Login as UserLogin;
 use App\Livewire\Auth\User\Register as UserRegister;
 use App\Livewire\User\Cart;
 use App\Livewire\User\Order;
+use App\Livewire\Vendor\Order as modalOrder;
 use App\Livewire\User\Product as modalProduct;
 use App\Livewire\Auth\Register;
 use App\Livewire\User\Home;
@@ -43,6 +44,7 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
         Route::get('/dashboard', Dashboard::class)->name('dashboard');
         Route::get('category', Category::class)->name('category');
         Route::get('/product', Product::class)->name('product');
+        Route::get('/order',modalOrder::class)->name('order');
     });
 });
 
