@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/order') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
+                    <a class="py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/order') || request()->is('vendor/order-detail*') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
                         wire:navigate href="{{ route('vendor.order') }}">
                         <span :class="open ? 'block' : 'hidden duration-0'"><i class="fas fa-shopping-cart"></i>
                             Orders</span>

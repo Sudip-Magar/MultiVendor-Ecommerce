@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Vendor;
 
+use App\Models\VendorOrder;
 use Livewire\Component;
 use App\Models\Order as modalOrder;
 
@@ -14,16 +15,7 @@ class Order extends Component
     {
         $vendorId = auth('vendor')->user()->id; // or however you get the vendor ID
 
-        $orders = modalOrder::whereHas('orderItems.product', function ($query) use ($vendorId) {
-            $query->where('vendor_id', $vendorId);
-        })->with([
-                    'orderItems' => function ($query) use ($vendorId) {
-                        $query->whereHas('product', function ($q) use ($vendorId) {
-                            $q->where('vendor_id', $vendorId);
-                        })->with('product');
-                    }
-                ])->get();
-        $this->orders = $orders;
+       $this->orders = VendorOrder::where('vendor_id',$vendorId)->with('order','items')->get();
     }
     public function render()
     {

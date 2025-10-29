@@ -13,6 +13,7 @@ use App\Livewire\User\Home;
 use App\Livewire\User\ProductDetail;
 use App\Livewire\Vendor\Category;
 use App\Livewire\Vendor\Dashboard;
+use App\Livewire\Vendor\OrderDetail;
 use App\Livewire\Vendor\Product\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,7 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
         Route::get('category', Category::class)->name('category');
         Route::get('/product', Product::class)->name('product');
         Route::get('/order',modalOrder::class)->name('order');
+        Route::get('/order-detail/{id}',OrderDetail::class)->name('orderDetail');
     });
 });
 
