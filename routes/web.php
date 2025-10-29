@@ -17,6 +17,10 @@ use App\Livewire\Vendor\OrderDetail;
 use App\Livewire\Vendor\Product\Product;
 use Illuminate\Support\Facades\Route;
 
+use App\Livewire\Auth\Admin\Register as adminRegister;
+use App\Livewire\Auth\Admin\Login as adminLogin;
+use App\Livewire\Admin\Dashboard as adminDashboard;
+
 
 Route::get('/', Home::class)->name('home');
 Route::get('product',modalProduct::class)->name('user.product');
@@ -50,8 +54,14 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
     });
 });
 
-// Public product routes
-// Route::get('/', [ProductController::class, 'index'])->name('products.index');
-// Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
-// Route::get('/category/{categoryId}/products', [ProductController::class, 'categoryProducts'])->name('products.category');
-// Route::get('/vendor/{vendorId}/products', [ProductController::class, 'vendorProducts'])->name('products.vendor');
+
+Route::prefix('admin')->group(function(){
+    Route::middleware('guest')->group(function(){
+        Route::get('/register',adminRegister::class)->name('admin.register');
+        Route::get('/login',adminLogin::class)->name('admin.login');
+    });
+
+    Route::middleware('admin')->group(function(){
+        Route::get('dashboard',adminDashboard::class)->name('admin.dashboard');
+    });
+});
