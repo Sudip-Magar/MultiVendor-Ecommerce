@@ -15,10 +15,15 @@ class Admin extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
         'department',
         'phone',
         'address',
         'is_active',
         'order_id',
     ];
+
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 }

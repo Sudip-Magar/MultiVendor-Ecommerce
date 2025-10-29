@@ -80,6 +80,11 @@ return [
             'model' => App\Models\Vendor::class,
         ],
 
+        'admins' => [
+            'driver' =>'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
