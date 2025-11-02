@@ -12,6 +12,7 @@
                         <th class="px-4 py-2 border-b">#</th>
                         <th class="px-4 py-2 border-b">Name</th>
                         <th class="px-4 py-2 border-b">Description</th>
+                        <th class="px-4 py-2 border-b">Created By</th>
                         <th class="px-4 py-2 border-b text-center">Action</th>
                     </tr>
                 </thead>
@@ -21,8 +22,16 @@
                             <td class="px-4 py-2">{{ $key + 1 }}</td>
                             <td class="px-4 py-2 font-medium text-gray-800">{{ $category->name }}</td>
                             <td class="px-4 py-2 text-gray-600">{{ Str::limit($category->description, 40) }}</td>
+                            <td>
+                                @if ($category->vendor_id)
+                                    {{ $category->vendor->shop_name }}
+                                @endif
+                                @if ($category->admin_id)
+                                    {{ $category->admin->name }}
+                                @endif
+                            </td>
                             <td class="px-4 py-2 text-center space-x-3">
-                                <button @click="open = true" wire:click="edit({{ $category->id }})"
+                                <button @click.prevent="open = true" wire:click="edit({{ $category->id }})"
                                     class="text-blue-500 hover:underline text-sm cursor-pointer">
                                     Edit
                                 </button>

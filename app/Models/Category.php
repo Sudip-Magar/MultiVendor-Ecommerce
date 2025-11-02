@@ -10,6 +10,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'vendor_id',
+        'admin_id',
         'description'
     ];
 
@@ -19,5 +20,8 @@ class Category extends Model
 
     public function vendor(){
         return $this->belongsTo(Vendor::class);
+    }
+    public function admin(){
+        return $this->belongsTo(Admin::class);
     }
 }
