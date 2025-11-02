@@ -204,6 +204,9 @@
                                         <option value="E-Sewa">E-Sewa</option>
                                         <option value="Cash">Cash on Delivery</option>
                                     </select>
+                                    @error('paymentMethod')
+                                    <small class="text-red-800">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
 

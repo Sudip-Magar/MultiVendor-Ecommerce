@@ -18,9 +18,13 @@ class Order extends Model
         'price',
         'payment_status',
         'order_status',
-        'payment_method'
+        'payment_method',
+        'admin_id',
     ];
 
+    public function admin(){
+        return $this->belongsTo(Admin::class);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -29,5 +33,10 @@ class Order extends Model
     public function orderItems()
     {
         return $this->hasMany(Order_item::class);
+    }
+
+    public function vendorOrders()
+    {
+        return $this->hasMany(VendorOrder::class);
     }
 }

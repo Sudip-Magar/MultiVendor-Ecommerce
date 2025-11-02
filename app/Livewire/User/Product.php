@@ -65,7 +65,7 @@ class Product extends Component
     }
     public function render()
     {
-        $productsQuery = modalProduct::with('images')->latest();
+        $productsQuery = modalProduct::with('images','vendor')->latest();
 
         if ($this->limit) {
             $productsQuery->limit($this->limit);

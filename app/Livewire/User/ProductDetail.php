@@ -22,7 +22,7 @@ class ProductDetail extends Component
     public function mount($id)
     {
         $this->productId = $id;
-        $this->product = Product::with('images')->findOrFail($id);
+        $this->product = Product::with('images','vendor')->findOrFail($id);
 
         // Set the first image as main image
         $this->mainImage = $this->product->images->first()->url ?? 'default/product.jpg';

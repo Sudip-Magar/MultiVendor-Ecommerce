@@ -26,6 +26,9 @@
                             -{{ $product->discount }}%
                         </span>
                     @endif
+
+                    <p class="absolute top-2 right-2 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded-full">{{ $product->vendor->shop_name }}</p>
+
                 </div>
 
                 {{-- Product Details --}}
@@ -60,6 +63,7 @@
                             <i class="fa-solid fa-cart-plus" wire:click.prevent='AddToCart({{ $product->id }})'></i>
                         </button>
                     </div>
+
                 </div>
             </div>
         @endforeach

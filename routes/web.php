@@ -1,19 +1,30 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Livewire\Admin\Products;
+use App\Livewire\Admin\Vendor;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\User\Login as UserLogin;
 use App\Livewire\Auth\User\Register as UserRegister;
 use App\Livewire\User\Cart;
 use App\Livewire\User\Order;
+use App\Livewire\Vendor\Order as modalOrder;
 use App\Livewire\User\Product as modalProduct;
 use App\Livewire\Auth\Register;
 use App\Livewire\User\Home;
 use App\Livewire\User\ProductDetail;
 use App\Livewire\Vendor\Category;
 use App\Livewire\Vendor\Dashboard;
+use App\Livewire\Vendor\OrderDetail;
 use App\Livewire\Vendor\Product\Product;
 use Illuminate\Support\Facades\Route;
+
+use App\Livewire\Auth\Admin\Register as adminRegister;
+use App\Livewire\Auth\Admin\Login as adminLogin;
+use App\Livewire\Admin\Dashboard as adminDashboard;
+use App\Livewire\Admin\ProductDetail as adminProductDetail;
+use App\Livewire\Admin\Category as adminCategory;
+use App\Livewire\Admin\Order as adminOrder;
 
 
 Route::get('/', Home::class)->name('home');
@@ -43,11 +54,25 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
         Route::get('/dashboard', Dashboard::class)->name('dashboard');
         Route::get('category', Category::class)->name('category');
         Route::get('/product', Product::class)->name('product');
+        Route::get('/order',modalOrder::class)->name('order');
+        Route::get('/order-detail/{id}',OrderDetail::class)->name('orderDetail');
     });
 });
 
-// Public product routes
-// Route::get('/', [ProductController::class, 'index'])->name('products.index');
-// Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
-// Route::get('/category/{categoryId}/products', [ProductController::class, 'categoryProducts'])->name('products.category');
-// Route::get('/vendor/{vendorId}/products', [ProductController::class, 'vendorProducts'])->name('products.vendor');
+
+Route::prefix('admin')->group(function(){
+    Route::middleware('guest')->group(function(){
+        Route::get('/register',adminRegister::class)->name('admin.register');
+        Route::get('/login',adminLogin::class)->name('admin.login');
+    });
+
+    Route::middleware('admin')->group(function(){
+        Route::get('/dashboard',adminDashboard::class)->name('admin.dashboard');
+        Route::get('/vendors',Vendor::class)->name('admin.vendor');
+        Route::get('/products',Products::class)->name('admin.product');
+        Route::get('/product-detail/{id}',adminProductDetail::class)->name('admin.product-detail');
+        Route::get('/category',adminCategory::class)->name('admin.category');
+        Route::get('/order',adminOrder::class)->name('admin.order');
+
+    });
+});

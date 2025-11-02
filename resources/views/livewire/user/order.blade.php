@@ -13,7 +13,7 @@
                             <span class="text-sm text-gray-500">Placed: {{ $order->created_at }}</span>
                             <button @click.prevent="show" wire:click='popDeleteOrder({{ $order->id }})'
                                 class="text-red-600 hover:text-red-800 font-semibold px-2 py-1 rounded cursor-pointer"
-                                title="Delete Order">
+                                title="Cancel Order">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
@@ -21,8 +21,17 @@
 
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
                         <div class="mb-3 md:mb-0">
-                            <p><strong>Status:</strong> <span
-                                    class="text-yellow-600">{{ $order->payment_status }}</span></p>
+                            <p><strong>Status:</strong>
+                                @if ($order->order_status == 'Pending')
+                                    <span class="text-yellow-500">{{ $order->order_status }}</span>
+                                @elseif ($order->order_status == 'Processing')
+                                    <span class="text-blue-500">{{ $order->order_status }}</span>
+                                @elseif ($order->order_status == 'Delivered')
+                                    <span class="text-green-500">{{ $order->order_status }}</span>
+                                @elseif ($order->order_status == 'Cancelled')
+                                    <span class="text-green-500">{{ $order->order_status }}</span>
+                                @endif
+                            </p>
                             <p><strong>Payment:</strong> {{ $order->payment_method }}</p>
                         </div>
                         <div>
@@ -37,6 +46,14 @@
                                 <li class="py-2 flex justify-between">
                                     <span>{{ $item->product->name }}
                                         <span class="text-green-500">x{{ $item->quantity }}</span>
+                                        <span class="ms-10">
+                                            @if ($item->vendorOrder->status == 'Cancelled')
+                                                <small class="bg-red-500 px-2 py-0.5 rounded-xl text-white">Order has
+                                                    been cancelled by
+                                                    {{ $item->vendorOrder->vendor->shop_name }}</small>
+                                            @endif
+                                        </span>
+
                                     </span>
                                     <span>Rs. {{ $item->total }}</span>
                                 </li>
