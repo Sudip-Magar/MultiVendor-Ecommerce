@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Livewire\Admin\Products;
+use App\Livewire\Admin\Vendor;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\User\Login as UserLogin;
 use App\Livewire\Auth\User\Register as UserRegister;
@@ -20,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Auth\Admin\Register as adminRegister;
 use App\Livewire\Auth\Admin\Login as adminLogin;
 use App\Livewire\Admin\Dashboard as adminDashboard;
+use App\Livewire\Admin\ProductDetail as adminProductDetail;
+use App\Livewire\Admin\Category as adminCategory;
+use App\Livewire\Admin\Order as adminOrder;
 
 
 Route::get('/', Home::class)->name('home');
@@ -62,6 +67,12 @@ Route::prefix('admin')->group(function(){
     });
 
     Route::middleware('admin')->group(function(){
-        Route::get('dashboard',adminDashboard::class)->name('admin.dashboard');
+        Route::get('/dashboard',adminDashboard::class)->name('admin.dashboard');
+        Route::get('/vendors',Vendor::class)->name('admin.vendor');
+        Route::get('/products',Products::class)->name('admin.product');
+        Route::get('/product-detail/{id}',adminProductDetail::class)->name('admin.product-detail');
+        Route::get('/category',adminCategory::class)->name('admin.category');
+        Route::get('/order',adminOrder::class)->name('admin.order');
+
     });
 });

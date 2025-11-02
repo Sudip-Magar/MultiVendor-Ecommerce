@@ -22,22 +22,30 @@
                     </a>
                 </li>
                 <li>
-                    <a class=" py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/product') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
-                        wire:navigate href=" {{ route('vendor.product') }}">
+                    <a class=" py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('admin/products') || request()->is('admin/product-detail*') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
+                        wire:navigate href=" {{ route('admin.product') }}">
                         <span :class="open ? 'block' : 'hidden duration-0'"><i class="fas fa-box"></i> Products</span>
                     </a>
                 </li>
                 <li>
-                    <a class=" py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/category') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
-                        wire:navigate href="{{ route('vendor.category') }}">
+                    <a class=" py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('admin/category') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
+                        wire:navigate href="{{ route('admin.category') }}">
                         <span :class="open ? 'block' : 'hidden duration-0'"><i class="fas fa-tags"></i> Category</span>
                     </a>
                 </li>
                 <li>
-                    <a class="py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('vendor/order') || request()->is('vendor/order-detail*') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
-                        wire:navigate href="{{ route('vendor.order') }}">
+                    <a class="py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('admin/order') || request()->is('vendor/order-detail*') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
+                        wire:navigate href="{{ route('admin.order') }}">
                         <span :class="open ? 'block' : 'hidden duration-0'"><i class="fas fa-shopping-cart"></i>
                             Orders</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('admin/vendors') || request()->is('vendor/order-detail*') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
+                        wire:navigate href="{{ route('admin.vendor') }}">
+                        <span :class="open ? 'block' : 'hidden duration-0'"><i class="fa-solid fa-shop"></i>
+                            Vendors</span>
                     </a>
                 </li>
                 <li>
@@ -51,7 +59,7 @@
 
     </div>
     <form action="{{ route('vendor.logout') }}" method="POST">
-        @csrf   
+        @csrf
         <button class="absolute bottom-18 hover:text-gray-400 cursor-pointer left-10">
             <i class="fa-solid fa-right-from-bracket"></i> Logout
         </button>
