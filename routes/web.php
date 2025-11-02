@@ -25,6 +25,7 @@ use App\Livewire\Admin\Dashboard as adminDashboard;
 use App\Livewire\Admin\ProductDetail as adminProductDetail;
 use App\Livewire\Admin\Category as adminCategory;
 use App\Livewire\Admin\Order as adminOrder;
+use App\Livewire\Admin\OrderDetail as adminOrderDetail;
 
 
 Route::get('/', Home::class)->name('home');
@@ -73,6 +74,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/product-detail/{id}',adminProductDetail::class)->name('admin.product-detail');
         Route::get('/category',adminCategory::class)->name('admin.category');
         Route::get('/order',adminOrder::class)->name('admin.order');
+        Route::get('/order-detail/{id}',adminOrderDetail::class)->name('admin.order-detail');
 
     });
 });
