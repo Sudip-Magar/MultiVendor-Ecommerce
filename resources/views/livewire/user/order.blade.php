@@ -23,13 +23,20 @@
                         <div class="mb-3 md:mb-0">
                             <p><strong>Status:</strong>
                                 @if ($order->order_status == 'Pending')
-                                    <span class="text-yellow-500">{{ $order->order_status }}</span>
+                                    <span class="text-yellow-500">Your order has been placed and is awaiting
+                                        confirmation.</span>
                                 @elseif ($order->order_status == 'Processing')
-                                    <span class="text-blue-500">{{ $order->order_status }}</span>
+                                    <span class="text-blue-500">Your order is currently being processed.</span>
+                                @elseif ($order->order_status == 'Warehouse')
+                                    <span class="text-green-500">Your order is in the warehouse and will be shipped
+                                        shortly.</span>
+                                @elseif ($order->order_status == 'Shipped')
+                                    <span class="text-green-500">Your order is on its way!</span>
                                 @elseif ($order->order_status == 'Delivered')
-                                    <span class="text-green-500">{{ $order->order_status }}</span>
+                                    <span class="text-green-500">Your order has been delivered. Enjoy!</span>
                                 @elseif ($order->order_status == 'Cancelled')
-                                    <span class="text-green-500">{{ $order->order_status }}</span>
+                                    <span class="text-red-500">Your order has been cancelled. Please contact support for
+                                        assistance.</span>
                                 @endif
                             </p>
                             <p><strong>Payment:</strong> {{ $order->payment_method }}</p>

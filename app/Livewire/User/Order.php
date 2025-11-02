@@ -36,7 +36,7 @@ class Order extends Component
         try {
             $order = ModalOrder::find($this->orderItem->id);
             $orderItems = Order_item::where('order_id', $order->id)->get();
-            if ($order) {
+            if ($order && $order->is_shipped == false) {
                 foreach ($orderItems as $item) {
                     $product = Product::find($item->product->id);
                     $product->stock = $product->stock + $item->quantity;
@@ -44,9 +44,14 @@ class Order extends Component
                 }
                 $order->orderItems()->delete();
                 $order->delete();
+                DB::commit();
+                return redirect()->route('user.order')->with('success', 'Order Deleted Successfully');
             }
-            DB::commit();
-            return redirect()->route('user.order')->with('success', 'Order Deleted Successfully');
+            else{
+                DB::rollBack();
+                return redirect()->route('user.order')->with('error', 'Oops! Your order is on its way.');
+                
+            }
         } catch (\Exception $e) {
             DB::rollBack();
             session()->flash('error', 'Something went wrong. Please try again.');

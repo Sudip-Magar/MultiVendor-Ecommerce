@@ -23,16 +23,20 @@ class OrderDetail extends Component
         try {
             // update the current vendor order record
             $order = Order::find($this->vendorOrder->order_id);
-            $order->update(['order_status' => 'Processing']);
             if ($this->vendorOrder->status == 'Pending') {
                 $this->vendorOrder->update([
                     'status' => 'Processing',
                 ]);
+                $order->update(['order_status' => 'Processing']);
                 DB::commit();
                 return redirect()->route('vendor.orderDetail', ['id' => $this->vendorId])->with('success', 'Order updated to Processing.');
             } elseif ($this->vendorOrder->status == 'Processing') {
                 $this->vendorOrder->update([
                     'status' => 'Delivered',
+                ]);
+                $order->update([
+                    'order_status' => 'Warehouse',
+                    'is_shipped' => true,
                 ]);
                 DB::commit();
                 return redirect()->route('vendor.orderDetail', ['id' => $this->vendorId])->with('success', 'Order updated to Delivered.');
