@@ -12,7 +12,7 @@ class Order extends Component
     public function render()
     {
         return view('livewire.admin.order',[
-            'orders' => modelOrder::with('user')->paginate(20),
+            'orders' => modelOrder::with('user')->latest()->paginate(20),
         ]);
     }
 }

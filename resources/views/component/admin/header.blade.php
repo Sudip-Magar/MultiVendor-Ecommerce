@@ -58,7 +58,7 @@
         </nav>
 
     </div>
-    <form action="{{ route('vendor.logout') }}" method="POST">
+    <form action="{{ route('admin.logout') }}" method="POST">
         @csrf
         <button class="absolute bottom-18 hover:text-gray-400 cursor-pointer left-10">
             <i class="fa-solid fa-right-from-bracket"></i> Logout

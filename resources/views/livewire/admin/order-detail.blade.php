@@ -108,8 +108,9 @@
 
                 <div class="mt-4">
                     @if ($vendorOrder->status == 'Delivered' && !$vendorOrder->is_received)
-                        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm">
-                            Mark as Received
+                        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm"
+                            wire:click='recievedOrder({{ $vendorOrder->id }})'>
+                            Received vendor Order
                         </button>
                     @endif
                 </div>
@@ -121,11 +122,24 @@
 
 <!-- Overall Order Actions -->
 <div class="mt-6 flex justify-end gap-3">
-    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
+    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm cursor-pointer">
         Print Invoice
     </button>
-    <button class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm">
+    @if ($order->vendorOrders->every(fn($v) => $v->is_received && $order->order_status == 'Warehouse'))
+        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded cursor-pointer"
+            wire:click='shipOrder({{ $order->id }})'>
+            Ship Order
+        </button>
+    @endif
+    @if ($order->order_status == 'Shipped')
+        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded cursor-pointer"
+            wire:click='DelivereOrder({{ $order->id }})'>
+            Complete Order
+        </button>
+    @endif
+    <a href="{{ route('admin.order') }}"
+        class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm cursor-pointer">
         Back to Orders
-    </button>
+    </a>
 </div>
 </div>

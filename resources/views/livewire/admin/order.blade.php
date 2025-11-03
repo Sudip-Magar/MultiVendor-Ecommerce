@@ -1,7 +1,7 @@
 <section class="bg-gray-100 min-h-screen py-10">
     <div class="max-w-7xl mx-auto bg-white rounded-2xl shadow-md p-6">
         <h2 class="text-3xl font-semibold mb-6 flex items-center justify-between">
-            🛍️ Vendor Orders
+            🛍️ All Orders
             <span class="text-sm text-gray-500">Rs. {{ number_format($orders->sum('subtotal')) }}</span>
         </h2>
 
@@ -15,6 +15,7 @@
                         <th class="px-4 py-3 text-left">Customer</th>
                         <th class="px-4 py-3 text-left">Payment Method</th>
                         <th class="px-4 py-3 text-left">Address</th>
+                        <th class="px-4 py-3 text-left">Items</th>
                         <th class="px-4 py-3 text-left">Total</th>
                         <th class="px-4 py-3 text-left">Status</th>
                         <th class="px-4 py-3 text-left">Order Date</th>
@@ -23,23 +24,31 @@
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     <!-- Single Order Row -->
-                    @foreach ($orders as $idx => $order)
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="px-4 py-3 font-medium text-gray-700">{{ $idx + 1 }}</td>
-                            <td class="px-4 py-3 font-medium text-gray-700">{{ $order->order_number }}</td>
-                            <td class="px-4 py-3 font-medium text-gray-700">{{ $order->user->name }}</td>
-                            <td class="px-4 py-3 font-medium text-gray-700">{{ $order->payment_method }}</td>
-                            <td class="px-4 py-3 font-medium text-gray-700">{{ $order->province }}, {{ $order->city }} <br> {{ $order->tole }}</td>
-                            <td class="px-4 py-3 font-medium text-gray-700">{{ number_format($order->price) }}</td>
-                            <td class="px-4 py-3 font-medium text-gray-700">{{ $order->order_status }}</td>
-                            <td class="px-4 py-3 font-medium text-gray-700">{{ $order->created_at->format('j M Y') }}</td>
-                            <td class="text-center">
-                                <a class="bg-gray-800 text-white px-2 py-0.5 rounded-md hover:bg-green-800 duration-150" href="{{ route('admin.order-detail',['id' => $order->id]) }}">View Detail</a>
-                            </td>
+                    @if ($orders && count($orders) > 0)
+                        @foreach ($orders as $idx => $order)
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-4 py-3 font-medium text-gray-700">{{ $idx + 1 }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-700">{{ $order->order_number }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-700">{{ $order->user->name }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-700">{{ $order->payment_method }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-700">{{ $order->province }},
+                                    {{ $order->city }} <br> {{ $order->tole }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-700">{{ $order->vendorOrders->count() }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-700">{{ number_format($order->price) }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-700">{{ $order->order_status }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-700">
+                                    {{ $order->created_at->format('j M Y') }}</td>
+                                <td class="text-center">
+                                    <a class="bg-gray-800 text-white px-2 py-0.5 rounded-md hover:bg-green-800 duration-150"
+                                        href="{{ route('admin.order-detail', ['id' => $order->id]) }}">View Detail</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="9" class="text-center py-6 text-gray-500">No orders found</td>
                         </tr>
-                    @endforeach
-
-                    <!-- Example more rows -->
+                    @endif
 
                 </tbody>
             </table>

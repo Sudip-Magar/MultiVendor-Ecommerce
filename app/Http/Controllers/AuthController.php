@@ -15,4 +15,9 @@ class AuthController extends Controller
         Auth::guard('web')->logout();
         return redirect()->route('home')->with('success','Logged out successfully');
     }
+
+    public function adminLogout(){
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login')->with('success','Logged out successfully');
+    }
 }
