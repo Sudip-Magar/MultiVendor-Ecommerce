@@ -68,6 +68,7 @@ Route::prefix('admin')->group(function(){
     });
 
     Route::middleware('admin')->group(function(){
+        Route::post('/logout',[AuthController::class,'adminLogout'])->name('admin.logout');
         Route::get('/dashboard',adminDashboard::class)->name('admin.dashboard');
         Route::get('/vendors',Vendor::class)->name('admin.vendor');
         Route::get('/products',Products::class)->name('admin.product');

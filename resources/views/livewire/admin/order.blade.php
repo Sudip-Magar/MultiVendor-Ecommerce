@@ -38,7 +38,7 @@
                                 <td class="px-4 py-3 font-medium text-gray-700">{{ $order->order_status }}</td>
                                 <td class="px-4 py-3 font-medium text-gray-700">
                                     {{ $order->created_at->format('j M Y') }}</td>
-                                <td class="">
+                                <td class="text-center">
                                     <a class="bg-gray-800 text-white px-2 py-0.5 rounded-md hover:bg-green-800 duration-150"
                                         href="{{ route('admin.order-detail', ['id' => $order->id]) }}">View Detail</a>
                                 </td>
