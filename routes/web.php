@@ -19,6 +19,8 @@ use App\Livewire\Vendor\OrderDetail;
 use App\Livewire\Vendor\Product\Product;
 use Illuminate\Support\Facades\Route;
 
+use App\Livewire\Vendor\Setting as vendorSetting;
+
 use App\Livewire\Auth\Admin\Register as adminRegister;
 use App\Livewire\Auth\Admin\Login as adminLogin;
 use App\Livewire\Admin\Dashboard as adminDashboard;
@@ -26,6 +28,7 @@ use App\Livewire\Admin\ProductDetail as adminProductDetail;
 use App\Livewire\Admin\Category as adminCategory;
 use App\Livewire\Admin\Order as adminOrder;
 use App\Livewire\Admin\OrderDetail as adminOrderDetail;
+use App\Livewire\Admin\Setting as adminSetting;
 
 
 Route::get('/', Home::class)->name('home');
@@ -57,6 +60,7 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
         Route::get('/product', Product::class)->name('product');
         Route::get('/order',modalOrder::class)->name('order');
         Route::get('/order-detail/{id}',OrderDetail::class)->name('orderDetail');
+        Route::get('/setting',vendorSetting::class)->name('setting');
     });
 });
 
@@ -76,6 +80,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/category',adminCategory::class)->name('admin.category');
         Route::get('/order',adminOrder::class)->name('admin.order');
         Route::get('/order-detail/{id}',adminOrderDetail::class)->name('admin.order-detail');
+        Route::get('/setting',adminSetting::class)->name('admin.setting');
 
     });
 });
