@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -63,6 +64,10 @@ class Setting extends Component
                 $validation['image'] = $validation['image']->store('admins', 'public');
             } else {
                 $validation['image'] = $this->oldImage;
+            }
+
+            if ($this->password) {
+                $validation['password'] = Hash::make($validation['password']);
             }
             $setting->update($validation);
             DB::commit();

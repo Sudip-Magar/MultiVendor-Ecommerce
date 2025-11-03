@@ -19,6 +19,8 @@ use App\Livewire\Vendor\OrderDetail;
 use App\Livewire\Vendor\Product\Product;
 use Illuminate\Support\Facades\Route;
 
+use App\Livewire\Vendor\Setting as vendorSetting;
+
 use App\Livewire\Auth\Admin\Register as adminRegister;
 use App\Livewire\Auth\Admin\Login as adminLogin;
 use App\Livewire\Admin\Dashboard as adminDashboard;
@@ -58,6 +60,7 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
         Route::get('/product', Product::class)->name('product');
         Route::get('/order',modalOrder::class)->name('order');
         Route::get('/order-detail/{id}',OrderDetail::class)->name('orderDetail');
+        Route::get('/setting',vendorSetting::class)->name('setting');
     });
 });
 
