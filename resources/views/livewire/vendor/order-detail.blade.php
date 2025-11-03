@@ -25,7 +25,11 @@
                     @elseif($vendorOrder->status == 'Processing')
                         <span class="bg-blue-500 px-2 rounded-xl text-white">{{ $vendorOrder->status }}</span>
                     @elseif($vendorOrder->status == 'Delivered')
-                        <span class="bg-green-500 px-2 rounded-xl text-white">{{ $vendorOrder->status }}</span>
+                        @if ($vendorOrder->is_received)
+                            <span class="bg-green-500 px-2 rounded-xl text-white">{{ $vendorOrder->status }}</span>
+                            @else
+                            <span class="bg-orange-500 px-2 rounded-xl text-white">Dispatched</span>
+                        @endif
                     @elseif($vendorOrder->status == 'Cancelled')
                         <span class="bg-red-500 px-2 rounded-xl text-white">{{ $vendorOrder->status }}</span>
                     @endif

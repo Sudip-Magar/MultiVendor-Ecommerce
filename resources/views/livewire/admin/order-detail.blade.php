@@ -108,8 +108,9 @@
 
                 <div class="mt-4">
                     @if ($vendorOrder->status == 'Delivered' && !$vendorOrder->is_received)
-                        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm">
-                            Mark as Received
+                        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm"
+                            wire:click='recievedOrder({{ $vendorOrder->id }})'>
+                            Received vendor Order
                         </button>
                     @endif
                 </div>
@@ -124,6 +125,11 @@
     <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
         Print Invoice
     </button>
+    @if ($order->vendorOrders->every(fn($v) => $v->is_received))
+        <button class="bg-blue-600 text-white px-4 py-2 rounded">
+            Ship Order
+        </button>
+    @endif
     <button class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm">
         Back to Orders
     </button>

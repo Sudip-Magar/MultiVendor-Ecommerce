@@ -36,12 +36,18 @@
                                 @elseif($order->status == 'Processing')
                                     <span class="bg-blue-500 px-2 rounded-xl text-white">{{ $order->status }}</span>
                                 @elseif($order->status == 'Delivered')
-                                    <span class="bg-green-500 px-2 rounded-xl text-white">{{ $order->status }}</span>
+                                    @if ($order->is_received)
+                                        <span
+                                            class="bg-green-500 px-2 rounded-xl text-white">{{ $order->status }}</span>
+                                    @else
+                                        <span
+                                            class="bg-orange-500 px-2 rounded-xl text-white">Dispatched</span>
+                                    @endif
                                 @elseif($order->status == 'Cancelled')
                                     <span class="bg-red-500 px-2 rounded-xl text-white">{{ $order->status }}</span>
                                 @endif
                             </td>
-                            <td class="px-4 py-3 text-gray-600">{{$order->created_at->format('Y-m-d')}}</td>
+                            <td class="px-4 py-3 text-gray-600">{{ $order->created_at->format('Y-m-d') }}</td>
                             <td class="px-4 py-3 text-gray-600">{{ $order->created_at->format('H:i') }}</td>
                             <td class="px-4 py-3 text-center">
                                 <div class="flex justify-center gap-2">

@@ -18,6 +18,7 @@ class Order extends Model
         'price',
         'payment_status',
         'order_status',
+        'is_shipped',
         'payment_method',
         'admin_id',
     ];

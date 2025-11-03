@@ -36,7 +36,7 @@ class OrderDetail extends Component
                 ]);
                 $order->update([
                     'order_status' => 'Warehouse',
-                    'is_shipped' => true,
+                    'is_shipped' => 1,
                 ]);
                 DB::commit();
                 return redirect()->route('vendor.orderDetail', ['id' => $this->vendorId])->with('success', 'Order updated to Delivered.');
