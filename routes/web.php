@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Livewire\Admin\Message;
 use App\Livewire\Admin\Products;
 use App\Livewire\Admin\Vendor;
+use App\Livewire\Admin\ViewMessage;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\User\Login as UserLogin;
 use App\Livewire\Auth\User\Register as UserRegister;
@@ -33,6 +35,7 @@ use App\Livewire\Admin\OrderDetail as adminOrderDetail;
 use App\Livewire\Admin\Setting as adminSetting;
 
 
+// User Route
 Route::get('/', Home::class)->name('home');
 Route::get('product',modalProduct::class)->name('user.product');
 Route::get('/product-detail/{id}',ProductDetail::class)->name('product.detail');
@@ -50,6 +53,7 @@ Route::middleware('web')->group(function (){
     Route::get('/setting', Setting::class)->name('user.setting');
 });
 
+// Vendor Route
 Route::prefix('vendor')->name('vendor.')->group(function () {
 
     Route::middleware('guest')->group(function () {
@@ -69,6 +73,7 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
 });
 
 
+//Admin Route
 Route::prefix('admin')->group(function(){
     Route::middleware('guest')->group(function(){
         Route::get('/register',adminRegister::class)->name('admin.register');
@@ -85,6 +90,8 @@ Route::prefix('admin')->group(function(){
         Route::get('/order',adminOrder::class)->name('admin.order');
         Route::get('/order-detail/{id}',adminOrderDetail::class)->name('admin.order-detail');
         Route::get('/setting',adminSetting::class)->name('admin.setting');
+        Route::get('/message',Message::class)->name('admin.message');
+        Route::get('message-datail/{id}', ViewMessage::class)->name('admin.message-datail');
 
     });
 });
