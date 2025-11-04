@@ -24,7 +24,7 @@ class Register extends Component
             'city' => 'required|string|max:255',
             'tole' => 'required|string|max:255',
             'photo' => 'nullable|image|max:2048', // Optional profile photo
-            'phone' => 'required|string|max:15',
+            'phone' => 'required|digits:10',
             'password' => 'required|string|min:5',
             'confirm_password' => 'required|same:password',
         ]);

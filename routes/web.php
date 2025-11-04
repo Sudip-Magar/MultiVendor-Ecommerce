@@ -8,6 +8,7 @@ use App\Livewire\Auth\User\Login as UserLogin;
 use App\Livewire\Auth\User\Register as UserRegister;
 use App\Livewire\User\Cart;
 use App\Livewire\User\Order;
+use App\Livewire\User\Setting;
 use App\Livewire\Vendor\Order as modalOrder;
 use App\Livewire\User\Product as modalProduct;
 use App\Livewire\Auth\Register;
@@ -44,6 +45,7 @@ Route::middleware('web')->group(function (){
     Route::post('/logout',[AuthController::class, 'userlogout'])->name('user.logout');
     Route::get('/cart',Cart::class)->name('user.cart');
     Route::get('/order', Order::class)->name('user.order');
+    Route::get('/setting', Setting::class)->name('user.setting');
 });
 
 Route::prefix('vendor')->name('vendor.')->group(function () {
