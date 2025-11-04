@@ -8,6 +8,7 @@ use App\Livewire\Admin\ViewMessage;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\User\Login as UserLogin;
 use App\Livewire\Auth\User\Register as UserRegister;
+use App\Livewire\User\AboutUs;
 use App\Livewire\User\Cart;
 use App\Livewire\User\ContactUs;
 use App\Livewire\User\Order;
@@ -40,6 +41,7 @@ Route::get('/', Home::class)->name('home');
 Route::get('product',modalProduct::class)->name('user.product');
 Route::get('/product-detail/{id}',ProductDetail::class)->name('product.detail');
 Route::get('/contact-us',ContactUs::class)->name('user.contact-us');
+Route::get('/about-us',AboutUs::class)->name('user.about-us');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', UserLogin::class)->name('user.login');

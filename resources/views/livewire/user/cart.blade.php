@@ -158,7 +158,7 @@
                 class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
 
                 <!-- Modal Box -->
-                <div x-transition.scale class="bg-white w-full max-w-[50%] rounded-lg shadow-lg p-6 relative">
+                <div x-transition.scale class="bg-white w-full max-w-[95%] lg:max-w-[50%] rounded-lg shadow-lg p-6 relative">
                     <!-- Close Button -->
                     <button @click.prevent="checkout = false"
                         class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-lg cursor-pointer">
