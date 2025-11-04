@@ -7,6 +7,7 @@ use App\Livewire\Auth\Login;
 use App\Livewire\Auth\User\Login as UserLogin;
 use App\Livewire\Auth\User\Register as UserRegister;
 use App\Livewire\User\Cart;
+use App\Livewire\User\ContactUs;
 use App\Livewire\User\Order;
 use App\Livewire\User\Setting;
 use App\Livewire\Vendor\Order as modalOrder;
@@ -35,6 +36,7 @@ use App\Livewire\Admin\Setting as adminSetting;
 Route::get('/', Home::class)->name('home');
 Route::get('product',modalProduct::class)->name('user.product');
 Route::get('/product-detail/{id}',ProductDetail::class)->name('product.detail');
+Route::get('/contact-us',ContactUs::class)->name('user.contact-us');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', UserLogin::class)->name('user.login');

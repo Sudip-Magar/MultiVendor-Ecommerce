@@ -44,7 +44,7 @@
                     wire:navigate>About Us</a>
             </li>
             <li class="py-3 lg:py-0">
-                <a href="#" class="hover:border-b-3 {{ request()->is('contact') ? 'border-b-3' : '' }}"
+                <a href="{{ route('user.contact-us') }}" class="hover:border-b-3 {{ request()->is('contact-us') ? 'border-b-3' : '' }}"
                     wire:navigate>Contact Us</a>
             </li>
 
