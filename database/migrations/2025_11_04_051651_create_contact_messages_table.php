@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('email');
             $table->string('subject');
-            $table->string('message');
+            $table->text('message');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->boolean('is_read')->default(false);
             $table->timestamps();

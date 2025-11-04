@@ -48,6 +48,16 @@
                             Vendors</span>
                     </a>
                 </li>
+
+
+                <li>
+                    <a class="py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('admin/message') || request()->is('admin/message-datail*') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
+                        wire:navigate href="{{ route('admin.message') }}">
+                        <span :class="open ? 'block' : 'hidden duration-0'"><i class="fa-solid fa-message"></i>
+                            Mesasge</span>
+                    </a>
+                </li>
+
                 <li>
                     <a class="py-2 px-4 hover:duration-200 flex items-center gap-2 {{ request()->is('admin/setting') ? 'bg-white text-black rounded-lg' : 'text-white hover:bg-white hover:text-black transition rounded-lg' }}"
                         wire:navigate href="{{ route('admin.setting') }}">
