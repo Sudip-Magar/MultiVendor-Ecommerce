@@ -12,6 +12,7 @@ class ContactMessage extends Model
         'email',
         'subject',
         'message',
+        'is_read'
     ];
 
     public function user(){
