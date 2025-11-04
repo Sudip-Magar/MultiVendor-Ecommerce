@@ -90,7 +90,7 @@
                                 class="absolute bottom-[-130px] left-[-19px] bg-gray-800 px-3 py-4 space-y-4 w-[150px] rounded-lg z-100">
                                 <span class="space-x-1.5 block hover:text-gray-400">
                                     <i class="fa-solid fa-gear"></i>
-                                    <a href="">Setting</a>
+                                    <a href="{{ route('user.setting') }}">Setting</a>
                                 </span>
 
                                 <form action="{{ route('user.logout') }}" method="POST">
