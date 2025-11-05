@@ -162,92 +162,99 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const reportData = @json($report);
+    document.addEventListener('livewire:navigated', () => {
+        const reportData = @json($report);
 
-    const labels = reportData.map(item => item.product.name);
-    const totalSold = reportData.map(item => item.total_sold);
-    const totalPrice = reportData.map(item => item.total_price);
+        const labels = reportData.map(item => item.product.name);
+        const totalSold = reportData.map(item => item.total_sold);
+        const totalPrice = reportData.map(item => item.total_price);
 
-    // Common line style generator for clean consistency
-    function createLineChart(ctx, label, data, borderColor, backgroundColor) {
-        return new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: label,
-                    data: data,
-                    borderColor: borderColor,
-                    backgroundColor: backgroundColor,
-                    fill: true,
-                    tension: 0.35,
-                    borderWidth: 2,
-                    pointRadius: 4,
-                    pointHoverRadius: 6,
-                    pointBackgroundColor: borderColor,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    title: {
-                        display: true,
-                        text: label,
-                        font: { size: 16, weight: '600' },
-                        color: '#333'
-                    },
-                    tooltip: {
-                        backgroundColor: '#fff',
-                        titleColor: '#000',
-                        bodyColor: '#000',
+        // Common line style generator for clean consistency
+        function createLineChart(ctx, label, data, borderColor, backgroundColor) {
+            return new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: data,
                         borderColor: borderColor,
-                        borderWidth: 1
-                    }
+                        backgroundColor: backgroundColor,
+                        fill: true,
+                        tension: 0.35,
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        pointBackgroundColor: borderColor,
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.05)',
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
                         },
                         title: {
                             display: true,
-                            text: label === 'Quantity Sold' ? 'Units Sold' : 'Revenue (Rs.)',
-                            color: '#555',
-                            font: { size: 13 }
+                            text: label,
+                            font: {
+                                size: 16,
+                                weight: '600'
+                            },
+                            color: '#333'
+                        },
+                        tooltip: {
+                            backgroundColor: '#fff',
+                            titleColor: '#000',
+                            bodyColor: '#000',
+                            borderColor: borderColor,
+                            borderWidth: 1
                         }
                     },
-                    x: {
-                        grid: {
-                            display: false
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)',
+                            },
+                            title: {
+                                display: true,
+                                text: label === 'Quantity Sold' ? 'Units Sold' : 'Revenue (Rs.)',
+                                color: '#555',
+                                font: {
+                                    size: 13
+                                }
+                            }
                         },
-                        ticks: {
-                            color: '#555'
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#555'
+                            }
                         }
                     }
                 }
-            }
-        });
-    }
+            });
+        }
 
-    // Initialize both charts
-    createLineChart(
-        document.getElementById('quantityChart').getContext('2d'),
-        'Quantity Sold',
-        totalSold,
-        'rgba(37, 99, 235, 1)',
-        'rgba(37, 99, 235, 0.15)'
-    );
+        // Initialize both charts
+        createLineChart(
+            document.getElementById('quantityChart').getContext('2d'),
+            'Quantity Sold',
+            totalSold,
+            'rgba(37, 99, 235, 1)',
+            'rgba(37, 99, 235, 0.15)'
+        );
 
-    createLineChart(
-        document.getElementById('revenueChart').getContext('2d'),
-        'Total Revenue (Rs)',
-        totalPrice,
-        'rgba(236, 72, 153, 1)',
-        'rgba(236, 72, 153, 0.15)'
-    );
+        createLineChart(
+            document.getElementById('revenueChart').getContext('2d'),
+            'Total Revenue (Rs)',
+            totalPrice,
+            'rgba(236, 72, 153, 1)',
+            'rgba(236, 72, 153, 0.15)'
+        );
+    })
 </script>
