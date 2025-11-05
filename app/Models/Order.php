@@ -21,6 +21,7 @@ class Order extends Model
         'is_shipped',
         'payment_method',
         'admin_id',
+        'quantity'
     ];
 
     public function admin(){

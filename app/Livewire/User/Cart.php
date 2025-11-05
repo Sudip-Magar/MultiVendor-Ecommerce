@@ -211,6 +211,7 @@ class Cart extends Component
                 'payment_status' => 'Pending',
                 'order_status' => 'Pending',
                 'payment_method' => $this->paymentMethod,
+                'quantity' => $cart_items->sum('quantity'),
             ]);
 
             // ✅ 2. Group items by vendor
@@ -221,12 +222,14 @@ class Cart extends Component
             // ✅ 3. Create vendor orders and order items
             foreach ($groupedByVendor as $vendorId => $items) {
                 $subtotal = $items->sum(fn($i) => $i->price * $i->quantity);
+                $quantity = $items->sum('quantity');
 
                 $vendorOrder = VendorOrder::create([
                     'order_id' => $order->id,
                     'vendor_id' => $vendorId,
                     'subtotal' => $subtotal,
                     'status' => 'Pending',
+                    'quantity' => $quantity,
                 ]);
 
                 foreach ($items as $item) {
