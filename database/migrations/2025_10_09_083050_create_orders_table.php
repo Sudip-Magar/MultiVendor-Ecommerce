@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('order_number')->unique()->autoIncrement();
             $table->string('price');
             $table->string('payment_status');
-            $table->string('order_status');
+            $table->string('order_status')->comment('pending,processing,warehouse,shipped,delivered');
             $table->string('payment_method');
             $table->timestamps();
         });

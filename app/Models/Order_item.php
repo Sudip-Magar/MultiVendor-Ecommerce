@@ -13,6 +13,7 @@ class Order_item extends Model
         'quantity',
         'price',
         'total',
+        'is_rate'
     ];
 
     public function order()

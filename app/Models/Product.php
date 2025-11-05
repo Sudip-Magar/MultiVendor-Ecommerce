@@ -49,4 +49,8 @@ class Product extends Model
     {
         return $this->hasOne(Order_item::class);
     }
+
+    public function productRating(){
+        return $this->hasOne(productRating::class);
+    }
 }

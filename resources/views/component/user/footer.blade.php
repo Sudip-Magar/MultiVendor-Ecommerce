@@ -3,20 +3,20 @@
         <div class="1/4">
             <h3 class="text-xl font-semibold ">Quick links</h3>
             <div class="flex flex-col mt-3 space-y-4">
-                <a class="hover:text-gray-400" href="home.php">Home</a>
-                <a class="hover:text-gray-400" href="about.php">About</a>
-                <a class="hover:text-gray-400" href="shop.php">Shop</a>
-                <a class="hover:text-gray-400" href="contact.php">Contact</a>
+                <a class="hover:text-gray-400" href="{{ route('home') }}">Home</a>
+                <a class="hover:text-gray-400" href="{{ route('user.about-us') }}">About</a>
+                <a class="hover:text-gray-400" href="{{ route('user.product') }}">Shop</a>
+                <a class="hover:text-gray-400" href="{{route('user.contact-us')}}">Contact</a>
             </div>
         </div>
 
         <div class="1/4">
             <h3 class="text-xl font-semibold ">Extra links</h3>
             <div class="flex flex-col mt-3 space-y-4">
-                <a class="hover:text-gray-400" href="login.php">Login</a>
-                <a class="hover:text-gray-400" href="register.php">Register</a>
-                <a class="hover:text-gray-400" href="cart.php">Cart</a>
-                <a class="hover:text-gray-400" href="orders.php">Orders</a>
+                <a class="hover:text-gray-400" href="{{route('user.login')}}">Login</a>
+                <a class="hover:text-gray-400" href="{{ route('user.register') }}">Register</a>
+                <a class="hover:text-gray-400" href="{{ route('user.cart') }}">Cart</a>
+                <a class="hover:text-gray-400" href="{{ route('user.order') }}">Orders</a>
             </div>
         </div>
 
