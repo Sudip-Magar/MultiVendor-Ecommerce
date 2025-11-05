@@ -11,7 +11,8 @@ class VendorOrder extends Model
         'vendor_id',
         'subtotal',
         'status',
-        'is_received'
+        'is_received',
+        'quantity',
     ];
 
     public function order()
