@@ -18,6 +18,9 @@
                     @if ($shop_image)
                         <img class="w-24 h-24 rounded-full object-cover border shadow-sm"
                             src="{{ $shop_image->temporaryUrl() }}" alt="Admin Image">
+                    @elseif(!$oldImage)
+                        <img class="w-24 h-24 rounded-full object-cover border shadow-sm"
+                            src="{{ asset('storage/default/vendor.jpg') }}" alt="">
                     @else
                         <img class="w-24 h-24 rounded-full object-cover border shadow-sm"
                             src="{{ asset('storage/' . $oldImage) }}" alt="">
@@ -80,8 +83,7 @@
             <div>
                 <label class="block mb-2 text-sm font-medium text-gray-600">City</label>
                 <input type="text" wire:model.defer="shop_city"
-                    class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
-                    placeholder="Shop city">
+                    class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="Shop city">
                 @error('shop_city')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
@@ -91,8 +93,7 @@
             <div>
                 <label class="block mb-2 text-sm font-medium text-gray-600">City</label>
                 <input type="text" wire:model.defer="shop_tole"
-                    class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
-                    placeholder="Shop tole">
+                    class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="Shop tole">
                 @error('shop_tole')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror

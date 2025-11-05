@@ -4,9 +4,11 @@ namespace App\Livewire\Admin;
 
 use App\Models\Product;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
+#[Title('Product Detail')]
 class ProductDetail extends Component
 {
     public $productId;

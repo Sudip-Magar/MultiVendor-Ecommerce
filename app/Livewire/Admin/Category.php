@@ -5,10 +5,12 @@ namespace App\Livewire\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Models\Category as modelCategory;
 
 #[Layout('components.layouts.admin')]
+#[Title('Category')]
 class Category extends Component
 {
     public $name, $description;

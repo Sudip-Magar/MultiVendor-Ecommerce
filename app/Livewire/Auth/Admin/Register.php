@@ -5,11 +5,13 @@ namespace App\Livewire\Auth\Admin;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 
 #[Layout('components.layouts.auth')]
+#[Title('Register')]
 class Register extends Component
 {
     use WithFileUploads;

@@ -18,6 +18,9 @@
                     @if ($photo)
                         <img class="w-24 h-24 rounded-full object-cover border shadow-sm"
                             src="{{ $photo->temporaryUrl() }}" alt="Admin Image">
+                    @elseif(!$oldPhoto)
+                        <img class="w-24 h-24 rounded-full object-cover border shadow-sm"
+                            src="{{ asset('storage/default/vendor.jpg') }}" alt="">
                     @else
                         <img class="w-24 h-24 rounded-full object-cover border shadow-sm"
                             src="{{ asset('storage/' . $oldPhoto) }}" alt="">

@@ -7,7 +7,9 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
+#[Title(content: 'Contact Us')]
 #[Layout('components.layouts.user')]
 class ContactUs extends Component
 {

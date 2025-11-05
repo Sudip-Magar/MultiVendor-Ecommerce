@@ -6,7 +6,9 @@ use App\Models\Order;
 use App\Models\VendorOrder;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
+#[Title(content: 'Order Detail')]
 class OrderDetail extends Component
 {
     public $vendorOrder, $vendorId;

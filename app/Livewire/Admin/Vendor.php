@@ -4,11 +4,13 @@ namespace App\Livewire\Admin;
 
 use App\Models\VendorOrder;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Models\Vendor as modelVendor
 ;
 
 #[Layout('components.layouts.admin')]
+#[Title('Vendor')]
 class Vendor extends Component
 {
     public function deleteVendor($id){

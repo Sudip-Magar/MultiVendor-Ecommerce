@@ -5,9 +5,11 @@ namespace App\Livewire\Admin;
 use App\Models\VendorOrder;
 use Livewire\Attributes\Layout;
 use App\Models\Order;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
+#[Title('Order Detail')]
 class OrderDetail extends Component
 {
 

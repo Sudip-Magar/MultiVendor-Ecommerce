@@ -12,8 +12,9 @@ use Livewire\Component;
 use App\Models\Cart as ModalCart;
 use App\Models\Cart_items;
 use App\Models\Product;
+use Livewire\Attributes\Title;
 
-
+#[Title(content: 'Cart')]
 #[Layout('components.layouts.user')]
 class Cart extends Component
 {

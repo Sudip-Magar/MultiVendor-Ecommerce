@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Title;
 
+#[Title(content: 'Setting')]
 class Setting extends Component
 {
     use WithFileUploads;

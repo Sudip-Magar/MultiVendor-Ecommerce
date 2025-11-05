@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use App\Models\Order as ModalOrder;
+use Livewire\Attributes\Title;
 
+#[Title(content: 'Order')]
 #[Layout('components/layouts/user')]
 class Order extends Component
 {

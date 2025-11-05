@@ -6,6 +6,9 @@ use Livewire\Component;
 use App\Models\Category as ModelsCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Title;
+
+#[Title(content: 'Category')]
 class Category extends Component
 {
     public $name, $description,$new_description,$new_name, $id;
