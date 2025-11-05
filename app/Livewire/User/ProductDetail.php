@@ -9,7 +9,9 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
+#[Title(content: 'Product Detail')]
 #[Layout('components/layouts/user')]
 class ProductDetail extends Component
 {

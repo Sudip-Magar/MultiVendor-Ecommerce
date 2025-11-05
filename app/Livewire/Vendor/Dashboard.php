@@ -7,7 +7,9 @@ use App\Models\Product;
 use App\Models\VendorOrder;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
+#[Title('Dashboard')]
 class Dashboard extends Component
 {
     public function mount()

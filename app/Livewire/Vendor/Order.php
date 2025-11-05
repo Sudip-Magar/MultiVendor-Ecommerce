@@ -5,7 +5,9 @@ namespace App\Livewire\Vendor;
 use App\Models\VendorOrder;
 use Livewire\Component;
 use App\Models\Order as modalOrder;
+use Livewire\Attributes\Title;
 
+#[Title(content: 'Order')]
 class Order extends Component
 {
     public $orders;

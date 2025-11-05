@@ -5,9 +5,11 @@ namespace App\Livewire\Admin;
 use App\Models\ContactMessage;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
+#[Title('Message Detail')]
 class ViewMessage extends Component
 {
     public $message;

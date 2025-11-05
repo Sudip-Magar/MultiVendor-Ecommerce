@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use App\Models\Product as modalProduct;
+use Livewire\Attributes\Title;
+
+#[Title(content: 'Product')]
 #[Layout('components/layouts/user')]
 class Product extends Component
 {

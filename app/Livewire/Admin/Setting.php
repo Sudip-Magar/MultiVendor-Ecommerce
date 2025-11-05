@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 
 #[Layout('components.layouts.admin')]
+#[Title('Setting')]
 class Setting extends Component
 {
     use WithFileUploads;

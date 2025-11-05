@@ -6,10 +6,12 @@ use App\Models\Vendor;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 #[Layout('components.layouts.auth')]
+#[Title('Register')]
 class Register extends Component
 {
     use withFileUploads;

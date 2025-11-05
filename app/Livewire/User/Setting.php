@@ -10,7 +10,9 @@ use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Title;
 
+#[Title(content: 'Setting')]
 #[Layout('components/layouts/user')]
 class Setting extends Component
 {
