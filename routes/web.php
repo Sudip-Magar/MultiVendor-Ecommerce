@@ -12,6 +12,7 @@ use App\Livewire\User\AboutUs;
 use App\Livewire\User\Cart;
 use App\Livewire\User\ContactUs;
 use App\Livewire\User\Order;
+use App\Livewire\User\Review;
 use App\Livewire\User\Setting;
 use App\Livewire\Vendor\Order as modalOrder;
 use App\Livewire\User\Product as modalProduct;
@@ -52,6 +53,7 @@ Route::middleware('web')->group(function (){
     Route::post('/logout',[AuthController::class, 'userlogout'])->name('user.logout');
     Route::get('/cart',Cart::class)->name('user.cart');
     Route::get('/order', Order::class)->name('user.order');
+    Route::get('/review/{id}', Review::class)->name('user.review');
     Route::get('/setting', Setting::class)->name('user.setting');
 });
 
