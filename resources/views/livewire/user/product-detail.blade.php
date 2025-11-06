@@ -44,30 +44,39 @@
                 <label for="quantity" class="text-gray-700 font-medium">Quantity:</label>
                 <input type="number" id="quantity" min="1" max="{{ $product->stock }}" wire:model='quantity'
                     class="w-20 border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-center">
-                    @error('quantity')
-                     <small class="text-red-500">{{ $message }}</small>
-                    @enderror
+                @error('quantity')
+                    <small class="text-red-500">{{ $message }}</small>
+                @enderror
             </div>
 
             <!-- Action Buttons -->
             <div class="flex space-x-3">
-                <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900 duration-150 cursor-pointer" wire:click.prevent = 'addToCart'>
+                <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900 duration-150 cursor-pointer"
+                    wire:click.prevent='addToCart'>
                     Add to Cart
                 </button>
-                <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 duration-150 cursor-pointer">
+                <button
+                    class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 duration-150 cursor-pointer">
                     Wishlist
                 </button>
-            </div>
-
-            <!-- Additional Info -->
-            <div class="mt-5">
-                <h3 class="font-semibold">Product Details:</h3>
-                <p>{{ $product->description }}</p>
             </div>
         </div>
     </div>
 
+    <!-- Product Details -->
+    <div class="w-[90%] md:w-[80%] mx-auto my-10">
+        <div class="mt-5">
+            <h3 class="font-semibold text-xl mb-2">Product Details:</h3>
+            <p class="text-gray-700">{{ $product->description }}</p>
+        </div>
 
+        @livewire('user.vendor', ['productId' => $product->id])
+
+        @livewire('user.view-review',['productId' => $product->id])
+
+    </div>
+
+    <!-- Related Products -->
     <div>
         @livewire('user.product', ['limit' => 5])
     </div>

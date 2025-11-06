@@ -108,7 +108,7 @@
 
                 <div class="mt-4">
                     @if ($vendorOrder->status == 'Delivered' && !$vendorOrder->is_received)
-                        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm"
+                        <button class="bg-green-600 cursor-pointer hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm"
                             wire:click='recievedOrder({{ $vendorOrder->id }})'>
                             Received vendor Order
                         </button>

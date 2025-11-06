@@ -56,7 +56,7 @@
 
     <div class="flex justify-end">
         <button wire:click="submit"
-            class="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-semibold transition">
+            class="px-6 py-2 bg-yellow-500 cursor-pointer hover:bg-yellow-600 text-white rounded-lg font-semibold transition">
             Submit All Reviews
         </button>
     </div>

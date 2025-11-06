@@ -14,6 +14,7 @@ use App\Livewire\User\ContactUs;
 use App\Livewire\User\Order;
 use App\Livewire\User\Review;
 use App\Livewire\User\Setting;
+use App\Livewire\User\VendorInfo;
 use App\Livewire\Vendor\Order as modalOrder;
 use App\Livewire\User\Product as modalProduct;
 use App\Livewire\Auth\Register;
@@ -43,6 +44,7 @@ Route::get('product',modalProduct::class)->name('user.product');
 Route::get('/product-detail/{id}',ProductDetail::class)->name('product.detail');
 Route::get('/contact-us',ContactUs::class)->name('user.contact-us');
 Route::get('/about-us',AboutUs::class)->name('user.about-us');
+Route::get('/vendor-info/{id}',VendorInfo::class)->name('user.vendorInfo');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', UserLogin::class)->name('user.login');
