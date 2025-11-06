@@ -17,7 +17,7 @@ class Order extends Component
     {
         $vendorId = auth('vendor')->user()->id; // or however you get the vendor ID
 
-       $this->orders = VendorOrder::where('vendor_id',$vendorId)->with('order','items')->get();
+       $this->orders = VendorOrder::where('vendor_id',$vendorId)->with('order','items')->latest()->get();
     }
     public function render()
     {

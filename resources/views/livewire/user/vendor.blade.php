@@ -10,12 +10,10 @@
 
                <!-- Static Rating -->
                <div class="flex items-center gap-1 text-yellow-400 mb-1">
-                   <i class="fa-solid fa-star"></i>
-                   <i class="fa-solid fa-star"></i>
-                   <i class="fa-solid fa-star"></i>
-                   <i class="fa-solid fa-star"></i>
-                   <i class="fa-regular fa-star text-gray-300"></i>
-                   <span class="text-gray-600 text-sm ml-2">(4.0 out of 5)</span>
+                    @for ($i=1;$i<=5;$i++)
+                        <i class="fa-solid fa-star {{ ($averageRate ?? 0)>= $i ? 'text-yellow-400' : 'text-gray-300' }}"></i>
+                    @endfor
+                   <span class="text-gray-600 text-sm ml-2">({{ $averageRate }} out of 5)</span>
                </div>
 
                <p class="text-gray-500 text-sm italic">“Excellent service and good quality products. Highly
