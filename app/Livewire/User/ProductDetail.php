@@ -5,6 +5,7 @@ namespace App\Livewire\User;
 use App\Models\Cart;
 use App\Models\Cart_items;
 use App\Models\Product;
+use App\Models\productRating;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
@@ -16,7 +17,7 @@ use Livewire\Attributes\Title;
 class ProductDetail extends Component
 {
     public $productId;
-    public $product;
+    public $product,$averateRate;
     public $mainImage;
     public $quantity = 1;
 
@@ -25,6 +26,7 @@ class ProductDetail extends Component
     {
         $this->productId = $id;
         $this->product = Product::with('images','vendor')->findOrFail($id);
+        $this->averateRate = round(productRating::where('product_id', $id)->avg('rating'), 1);
 
         // Set the first image as main image
         $this->mainImage = $this->product->images->first()->url ?? 'default/product.jpg';
@@ -87,7 +89,7 @@ class ProductDetail extends Component
 
     public function render()
     {
-        // $pro = V
+        
         return view('livewire.user.product-detail');
     }
 }

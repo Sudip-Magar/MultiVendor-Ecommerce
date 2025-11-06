@@ -18,6 +18,10 @@
         <!-- Right: Product Info -->
         <div class="space-y-3">
             <h2 class="text-3xl font-bold">{{ $product->name }}</h2>
+            @for ($i = 1; $i <= 5; $i++)
+                <i class="fa-solid fa-star {{ ($averateRate ?? 0) >= $i ? 'text-yellow-400' : 'text-gray-400' }}"></i>
+                @endfor
+                <span class="ms-2">({{ $averateRate }})</span>
             <p class="text-green-500">{{ $product->vendor->shop_name }}</p>
             <p class="text-gray-600">{{ $product->summary }}</p>
 
@@ -72,7 +76,7 @@
 
         @livewire('user.vendor', ['productId' => $product->id])
 
-        @livewire('user.view-review',['productId' => $product->id])
+        @livewire('user.view-review', ['productId' => $product->id])
 
     </div>
 

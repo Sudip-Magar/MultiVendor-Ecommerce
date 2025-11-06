@@ -1,5 +1,5 @@
 <section class="bg-gray-100 min-h-screen py-10">
-    <div class="max-w-7xl mx-auto bg-white rounded-2xl shadow-md p-6">
+    <div class="max-w-[94%] mx-auto bg-white rounded-2xl shadow-md p-6">
         <h2 class="text-3xl font-semibold mb-6 flex items-center justify-between">
             🛍️ All Orders
             <span class="text-sm text-gray-500">Rs. {{ number_format($orders->sum('subtotal')) }}</span>
