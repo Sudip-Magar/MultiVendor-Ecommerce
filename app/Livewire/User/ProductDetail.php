@@ -87,6 +87,7 @@ class ProductDetail extends Component
 
     public function render()
     {
+        // $pro = V
         return view('livewire.user.product-detail');
     }
 }
