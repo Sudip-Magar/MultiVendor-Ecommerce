@@ -72,7 +72,7 @@
 
         @livewire('user.vendor', ['productId' => $product->id])
 
-        @livewire('user.view-review')
+        @livewire('user.view-review',['productId' => $product->id])
 
     </div>
 

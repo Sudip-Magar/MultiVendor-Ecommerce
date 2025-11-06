@@ -32,7 +32,7 @@
             </li>
             <li class="py-3 lg:py-0">
                 <a href="{{ route('user.product') }}"
-                    class="hover:border-b-3 {{ request()->is('product') ? 'border-b-3' : '' }}"
+                    class="hover:border-b-3 {{ request()->is('product') || request()->is('product-detail*') ? 'border-b-3' : '' }}"
                     wire:navigate>Product</a>
             </li>
             <li class="py-3 lg:py-0">
