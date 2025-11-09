@@ -10,8 +10,11 @@
                 Visit us for the best deals!</p>
             <div class="mt-4 flex items-center gap-4">
                 <span class="text-gray-700 font-semibold">Rating:</span>
-                <div class="flex gap-1 text-yellow-400">
-                    ★★★★☆
+                <div class="flex gap-1 ">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <i class="fa-solid fa-star {{ ($averageRate ?? 0) >= $i ? 'text-yellow-400' : 'text-gray-400' }}"></i>
+                    @endfor
+                    <span class="ms-2">({{ $averageRate }})</span>
                 </div>
             </div>
             <div class="mt-4 text-gray-600">
@@ -48,11 +51,12 @@
                         @endif
                     </p>
                     <p class="text-gray-600 ">Stock: {{ $item->stock }}</p>
-                    <a href="{{ route('product.detail',['id' => $item->id]) }}"
+                    <a href="{{ route('product.detail', ['id' => $item->id]) }}"
                         class="mt-auto text-center cursor-pointer bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition">View
                         Details</a>
                     <button wire:click.prevent='AddToCart({{ $item->id }})'
-                        class="mt-1.5 text-center cursor-pointer bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition">Add to Cart</button>
+                        class="mt-1.5 text-center cursor-pointer bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition">Add
+                        to Cart</button>
                 </div>
             @endforeach
         </div>

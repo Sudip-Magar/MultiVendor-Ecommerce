@@ -4,6 +4,7 @@ namespace App\Livewire\User;
 
 use App\Models\Cart;
 use App\Models\Cart_items;
+use App\Models\productRating;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
@@ -69,11 +70,13 @@ class Product extends Component
     public function render()
     {
         $productsQuery = modalProduct::with('images','vendor')->latest();
+        // $productRating = productRating::select()
 
         if ($this->limit) {
             $productsQuery->limit($this->limit);
         }
         $products = $productsQuery->get();
+
 
         return view('livewire.user.product', [
             'products' => $products,
