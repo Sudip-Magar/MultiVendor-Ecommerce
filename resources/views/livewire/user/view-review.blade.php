@@ -1,6 +1,7 @@
  <!-- Static Review Section -->
  <div class="mt-10 bg-gray-100 p-6 rounded-xl shadow-lg">
-     <h3 class="text-xl font-semibold mb-6 text-gray-800 border-4 border-gray-100 border-b-gray-400  pb-5">Customer Reviews</h3>
+     <h3 class="text-xl font-semibold mb-6 text-gray-800 border-4 border-gray-100 border-b-gray-400  pb-5">Customer
+         Reviews <span class="text-gray-700 text-sm">({{ $reviews ? count($reviews) : 0 }} Reviews)</span></h3>
 
      @if (count($reviews) > 0)
          @foreach ($reviews as $review)
@@ -41,7 +42,7 @@
          @endforeach
      @else
          <div class="text-center font-semibold text-2xl text-gray-500">
-            No Customer Review
+             No Customer Review
          </div>
      @endif
  </div>

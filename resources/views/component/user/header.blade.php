@@ -1,4 +1,4 @@
-<header class="bg-gray-800 text-white" x-data="{ open: false, popup: false, }">
+<header class="bg-gray-800 text-white sticky-top" x-data="{ open: false, popup: false, }">
     <div class="flex justify-between items-center w-[90%] lg:w-[80%] mx-auto py-2">
         <h1 class="user-header font-normal text-3xl cursor-pointer">
             <a href="{{ route('home') }}">Ecommerce</a>

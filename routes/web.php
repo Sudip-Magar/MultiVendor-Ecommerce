@@ -24,6 +24,7 @@ use App\Livewire\Vendor\Category;
 use App\Livewire\Vendor\Dashboard;
 use App\Livewire\Vendor\OrderDetail;
 use App\Livewire\Vendor\Product\Product;
+use App\Livewire\Vendor\ProductReview;
 use Illuminate\Support\Facades\Route;
 
 use App\Livewire\Vendor\Setting as vendorSetting;
@@ -75,6 +76,7 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
         Route::get('/order',modalOrder::class)->name('order');
         Route::get('/order-detail/{id}',OrderDetail::class)->name('orderDetail');
         Route::get('/setting',vendorSetting::class)->name('setting');
+        Route::get('product-review',ProductReview::class)->name('product-review');
     });
 });
 
