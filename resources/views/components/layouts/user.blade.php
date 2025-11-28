@@ -17,7 +17,7 @@
 
 <body>
     @include('common.message')
-    <div class="z-100">
+    <div class="z-100 relative">
         @include('component.user.header')
     </div class="z-0">
     {{ $slot }}

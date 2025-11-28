@@ -4,6 +4,7 @@ namespace App\Livewire\User;
 
 use App\Models\Cart;
 use App\Models\Cart_items;
+use App\Models\Category;
 use App\Models\productRating;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,12 +17,7 @@ use Livewire\Attributes\Title;
 #[Layout('components/layouts/user')]
 class Product extends Component
 {
-    public $limit = null;
-
-    public function mount($limit = null)
-    {
-        $this->limit = $limit;
-    }
+    public $search = "", $category;
 
     public function AddToCart($id)
     {
@@ -67,19 +63,17 @@ class Product extends Component
             session()->flash('error', 'Something went wrong. Please try again.');
         }
     }
+
     public function render()
     {
-        $productsQuery = modalProduct::with('images','vendor')->latest();
-        // $productRating = productRating::select()
-
-        if ($this->limit) {
-            $productsQuery->limit($this->limit);
-        }
-        $products = $productsQuery->get();
-
+        $products = modalProduct::where('name', 'like', '%' . $this->search . '%')
+            ->with('vendor')
+            ->latest()->get();
+        $categories = Category::all();
 
         return view('livewire.user.product', [
             'products' => $products,
+            'categories' => $categories,
         ]);
     }
 }
